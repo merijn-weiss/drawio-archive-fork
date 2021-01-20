@@ -765,7 +765,7 @@ mxIBM2MondrianBase.prototype.paintIcon = function(c, x, y, w, h)
 	if(this.iconImage === 'stencilIcon')
 	{
 		var iconStencilName = this.state.cell.getAttribute('Icon-Name',null);
-		if(iconStencilName != null)
+		if(iconStencilName != null && iconStencilName != '')
 		{
 			var bgSt1 = mxStencilRegistry.getStencil('mxgraph.ibm2mondrian.' + iconStencilName);
 			if(bgSt1 == null)
