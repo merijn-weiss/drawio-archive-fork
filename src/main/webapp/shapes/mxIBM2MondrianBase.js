@@ -384,10 +384,10 @@ mxIBM2MondrianBase.prototype.redraw = function()
 	this.shapeType = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.SHAPE_TYPE, mxIBM2MondrianBase.prototype.cst.SHAPE_TYPE_DEFAULT);	
 	this.shapeLayout = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.SHAPE_LAYOUT, mxIBM2MondrianBase.prototype.cst.SHAPE_LAYOUT_DEFAULT);
 
-	if(this.shapeType === 'group') // a group can only be expanded so should ignore the shapeLayout setting
-		this.shapeLayout = 'expanded';
-	else if(this.shapeType === 'actor') // an actor can only be expanded so should ignore the shapeLayout setting
-		this.shapeLayout = 'collapsed';
+	//if(this.shapeType === 'group') // a group can only be expanded so should ignore the shapeLayout setting
+	//	this.shapeLayout = 'expanded';
+	//else if(this.shapeType === 'actor') // an actor can only be expanded so should ignore the shapeLayout setting
+	//	this.shapeLayout = 'collapsed';
 	
 	this.shapeMultiplicity = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.SHAPE_MULTIPLICITY, mxIBM2MondrianBase.prototype.cst.SHAPE_MULTIPLICITY_DEFAULT);
 	
@@ -765,7 +765,7 @@ mxIBM2MondrianBase.prototype.paintIcon = function(c, x, y, w, h)
 	if(this.iconImage === 'stencilIcon')
 	{
 		var iconStencilName = this.state.cell.getAttribute('Icon-Name',null);
-		if(iconStencilName != null)
+		if(iconStencilName != null && iconStencilName != '')
 		{
 			var bgSt1 = mxStencilRegistry.getStencil('mxgraph.ibm2mondrian.' + iconStencilName);
 			if(bgSt1 == null)
@@ -828,12 +828,19 @@ mxIBM2MondrianBase.prototype.getIconBoxWidth = function()
 var shapeStyle = {};
 mxIBM2MondrianBase.prototype.getStyle = function(style, shapeType, shapeLayout, positionText, iconImage)
 {
-	//const labelWidth = mxUtils.getValue(style, 'labelWidth', 100);
 	if(shapeType === 'group')
 	{
 		style = mxUtils.setStyle(style, 'container', 1);
 		style = mxUtils.setStyle(style, 'collapsible', 0);
 		style = mxUtils.setStyle(style, 'recursiveResize', 0);
+
+		if(shapeLayout === 'collapsed') // a group can only be expanded so should ignore the shapeLayout setting
+			style = mxUtils.setStyle(style, 'shapeLayout', 'expanded');
+	}
+	else if(shapeType === 'actor')
+	{
+		if(shapeLayout === 'expanded') // an actor can only be expanded so should ignore the shapeLayout setting
+			style = mxUtils.setStyle(style, 'shapeLayout', 'collapsed');
 	}
 
 	if(shapeLayout === 'collapsed' || shapeLayout === 'expanded')
