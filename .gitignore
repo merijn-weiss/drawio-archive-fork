@@ -3,3 +3,7 @@ build
 classes
 node_modules
 .vscode/settings.json
+src/main/webapp/.DS_Store
+src/main/.DS_Store
+.gitignore
+.DS_Store
