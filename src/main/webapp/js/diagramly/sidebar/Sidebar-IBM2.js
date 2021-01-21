@@ -80,11 +80,11 @@
 		    [
 			['Compute Devices'],
 
-			['Physical Server',		'archive',			pnode, blue],
-			['Mobile Device',		'mobile',			pnode, blue],
-			['Tablet Device',		'tablet',			pnode, blue],
-			['Laptop Device',		'laptop',			pnode, blue],
-			['Desktop Computer',		'devices',			pnode, blue],
+			['Physical Server',		'archive',			lnode, blue],
+			['Mobile Device',		'mobile',			lnode, blue],
+			['Tablet Device',		'tablet',			lnode, blue],
+			['Laptop Device',		'laptop',			lnode, blue],
+			['Desktop Computer',		'devices',			lnode, blue],
 		    ],
 
 		    [
@@ -98,10 +98,10 @@
 		    [
 			['Network Devices'],
 
-			['Application Load Balancer',	'parent-child',			pnode, blue],
-			['Network Load Balancer',	'parent-child',			pnode, blue],
-			['Public Gateway',		'network--2',			pnode, blue],
-			['Edge Node',			'edge-node',			pnode, blue],
+			['Application Load Balancer',	'parent-child',			lnode, blue],
+			['Network Load Balancer',	'parent-child',			lnode, blue],
+			['Public Gateway',		'network--2',			lnode, blue],
+			['Edge Node',			'edge-node',			lnode, blue],
 		    ],
 
 		    [
@@ -117,7 +117,7 @@
 		    [
 			['Security Devices'],
 
-			['VPN Gateway',			'',				pnode, red],
+			['VPN Gateway',			'',				lnode, red],
 		    ],
 
 		    [
@@ -130,9 +130,9 @@
 		    [
 			['Storage Devices'],
 
-			['Block Storage',		'',				pnode, blue],
-			['File Storage',		'',				pnode, blue],
-			['Object Storage',		'object-storage',		pnode, blue],
+			['Block Storage',		'',				lnode, blue],
+			['File Storage',		'',				lnode, blue],
+			['Object Storage',		'object-storage',		lnode, blue],
 		    ],
 
 		    [
