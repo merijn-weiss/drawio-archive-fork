@@ -428,7 +428,11 @@
 					var extraStyle = '';
 					var shapeId = '';
 
-					var bg = Sidebar.prototype.addIBM2MondrianVertexTemplateFactory(shape.shapeType, shape.shapeLayout, shape.shapeColor, shape.shapeContainer, styleFont, extraStyle, shapeId, shapeName, shape.iconName);
+					console.log(shapeName);
+					console.log(shape['shapeType']);
+					console.log(shape.shapeType);
+
+					var bg = Sidebar.prototype.addIBM2MondrianVertexTemplateFactory(shape['shapeType'], shape['shapeLayout'], shape['shapeColor'], shape['shapeContainer'], styleFont, extraStyle, shapeId, shapeName, shape['iconName']);
    					return sb.createVertexTemplateFromCells([bg], bg.geometry.width, bg.geometry.height, shapeName);
 				}))
 			}
