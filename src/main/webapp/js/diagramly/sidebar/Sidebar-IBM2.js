@@ -419,16 +419,15 @@
 		};
 
 		for (let sectionName in stencils) {
+			const shapes = stencils[sectionName];
 			var entries = [];
-			var shapes = stencils[sectionName];
 
 			for (let shapeName in shapes) {
 				entries.push(this.addEntry(dt + shapeName.toLowerCase(), function() {
+					const shape = shapes[shapeName];
 					var styleFont = '';
 					var extraStyle = '';
 					var shapeId = '';
-
-					var shape = shapes[shapeName];
 
 					var bg = Sidebar.prototype.addIBM2MondrianVertexTemplateFactory(shape['shapeType'], shape['shapeLayout'], shape['shapeColor'], shape['shapeContainer'], styleFont, extraStyle, shapeId, shapeName, shape['iconName']);
    					return sb.createVertexTemplateFromCells([bg], bg.geometry.width, bg.geometry.height, shapeName);
