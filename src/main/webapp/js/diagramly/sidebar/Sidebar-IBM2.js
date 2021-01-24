@@ -432,8 +432,8 @@
    					return sb.createVertexTemplateFromCells([bg], bg.geometry.width, bg.geometry.height, shape);
 				}))
 			}
-			this.setCurrentSearchEntryLibrary('ibm2', 'ibm2' + header);
-			this.addPaletteFunctions('ibm2' + header, 'IBM 2.0 / ' + header, false, entries);
+			this.setCurrentSearchEntryLibrary('ibm2', 'ibm2' + sectionName)
+			this.addPaletteFunctions('ibm2' + sectionName, 'IBM 2.0 / ' + sectionName, false, entries);
 		}
 
 		this.setCurrentSearchEntryLibrary();
