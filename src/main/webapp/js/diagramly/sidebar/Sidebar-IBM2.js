@@ -420,16 +420,16 @@
 
 		for (let sectionName in stencils) {
 			var entries = [];
-			var shapes = stencils[sectionName]
+			var shapes = stencils[sectionName];
 			for (let shapeName in shapes) {
-				shape = shapes[shapeName]
-				entries.push(this.addEntry(dt + name.toLowerCase(), function() {
+				shape = shapes[shapeName];
+				entries.push(this.addEntry(dt + shapeName.toLowerCase(), function() {
 					var styleFont = '';
 					var extraStyle = '';
 					var shapeId = '';
 
 					var bg = Sidebar.prototype.addIBM2MondrianVertexTemplateFactory(shape.shapeType, shape.shapeLayout, shape.shapeColor, shape.shapeContainer, styleFont, extraStyle, shapeId, shapeName, shape.iconName);
-   					return sb.createVertexTemplateFromCells([bg], bg.geometry.width, bg.geometry.height, shape);
+   					return sb.createVertexTemplateFromCells([bg], bg.geometry.width, bg.geometry.height, shapeName);
 				}))
 			}
 			this.setCurrentSearchEntryLibrary('ibm2', 'ibm2' + sectionName)
