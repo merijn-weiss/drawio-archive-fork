@@ -33,6 +33,8 @@ mxUtils.extend(mxIBM2MondrianBase, mxShape);
 
 mxIBM2MondrianBase.prototype.cst = {
 	MONDRIAN_BASE : 'mxgraph.ibm2mondrian.base',
+	MONDRIAN_VERSION: 'version',
+	MONDRIAN_VERSION_DEFAULT: 'v1a',
 
 	SHAPE_TYPE : 'shapeType',
 	SHAPE_TYPE_DEFAULT : 'pn',
@@ -48,7 +50,7 @@ mxIBM2MondrianBase.prototype.cst = {
 	COLOR_FAMILY : 'colorFamily',
 	COLOR_FAMILY_DEFAULT : 'blue',
 	COLOR_FILL_ICON : 'colorFillIcon', 
-	COLOR_FILL_ICON_DEFAULT : 'swatch_40', 
+	COLOR_FILL_ICON_DEFAULT : 'medium', 
 	COLOR_FILL_TEXT : 'colorFillText', 
 	COLOR_FILL_TEXT_DEFAULT : 'white',
 	COLOR_FILL_CONTAINER : 'colorFillContainer', 
@@ -64,72 +66,200 @@ mxIBM2MondrianBase.prototype.cst = {
 mxIBM2MondrianBase.prototype.getSelectedColorSpecification = function(colorFamily) {
 	switch(colorFamily) {
 		case 'red':
-			return {noColor: 'none', white: '#ffffff', swatch_10: '#fff1f1', swatch_20: '#ffd7d9', swatch_30: '#ffb3b8', swatch_40: '#ff8389', swatch_50: '#fa4d56', swatch_60: '#da1e28'};
+			return {noColor: 'none', white: '#ffffff', swatch_10: '#fff1f1', swatch_20: '#ffd7d9', swatch_30: '#ffb3b8', swatch_40: '#ff8389', swatch_50: '#fa4d56', swatch_60: '#da1e28', swatch_70: '#a2191f', swatch_80: '#750e13', swatch_90: '#520408', swatch_100: '#2d0709'};
 		case 'magenta':
-			return {noColor: 'none', white: '#ffffff', swatch_10: '#fff0f7', swatch_20: '#ffd6e8', swatch_30: '#ffafd2', swatch_40: '#ff7eb6', swatch_50: '#ee5396', swatch_60: '#d02670'};
+			return {noColor: 'none', white: '#ffffff', swatch_10: '#fff0f7', swatch_20: '#ffd6e8', swatch_30: '#ffafd2', swatch_40: '#ff7eb6', swatch_50: '#ee5396', swatch_60: '#d02670', swatch_70: '#9f1853', swatch_80: '#740937', swatch_90: '#510224', swatch_100: '#2a0a18'};
 		case 'purple':
-			return {noColor: 'none', white: '#ffffff', swatch_10: '#f6f2ff', swatch_20: '#e8daff', swatch_30: '#d4bbff', swatch_40: '#be95ff', swatch_50: '#a56eff', swatch_60: '#8a3ffc'};		
+			return {noColor: 'none', white: '#ffffff', swatch_10: '#f6f2ff', swatch_20: '#e8daff', swatch_30: '#d4bbff', swatch_40: '#be95ff', swatch_50: '#a56eff', swatch_60: '#8a3ffc', swatch_70: '#6929c4', swatch_80: '#491d8b', swatch_90: '#31135e', swatch_100: '#1c0f30'};
 		case 'cyan':
-			return {noColor: 'none', white: '#ffffff', swatch_10: '#e5f6ff', swatch_20: '#bae6ff', swatch_30: '#82cfff', swatch_40: '#33b1ff', swatch_50: '#1192e8', swatch_60: '#0072c3'};			
+			return {noColor: 'none', white: '#ffffff', swatch_10: '#e5f6ff', swatch_20: '#bae6ff', swatch_30: '#82cfff', swatch_40: '#33b1ff', swatch_50: '#1192e8', swatch_60: '#0072c3', swatch_70: '#00539a', swatch_80: '#003a6d', swatch_90: '#012749', swatch_100: '#061727'};
 		case 'blue':
-			return {noColor: 'none', white: '#ffffff', swatch_10: '#edf5ff', swatch_20: '#d0e2ff', swatch_30: '#a6c8ff', swatch_40: '#78a9ff', swatch_50: '#4589ff', swatch_60: '#0f62fe'};
+			return {noColor: 'none', white: '#ffffff', swatch_10: '#edf5ff', swatch_20: '#d0e2ff', swatch_30: '#a6c8ff', swatch_40: '#78a9ff', swatch_50: '#4589ff', swatch_60: '#0f62fe', swatch_70: '#0043ce', swatch_80: '#002d9c', swatch_90: '#001d6c', swatch_100: '#001141'};
 		case 'teal':
-			return {noColor: 'none', white: '#ffffff', swatch_10: '#d9fbfb', swatch_20: '#9ef0f0', swatch_30: '#3ddbd9', swatch_40: '#08bdba', swatch_50: '#009d9a', swatch_60: '#007d79'};
+			return {noColor: 'none', white: '#ffffff', swatch_10: '#d9fbfb', swatch_20: '#9ef0f0', swatch_30: '#3ddbd9', swatch_40: '#08bdba', swatch_50: '#009d9a', swatch_60: '#007d79', swatch_70: '#005d5d', swatch_80: '#004144', swatch_90: '#022b30', swatch_100: '#081a1c'};
 		case 'green':
-			return {noColor: 'none', white: '#ffffff', swatch_10: '#defbe6', swatch_20: '#a7f0ba', swatch_30: '#6fdc8c', swatch_40: '#42be65', swatch_50: '#24a148', swatch_60: '#198038'};
+			return {noColor: 'none', white: '#ffffff', swatch_10: '#defbe6', swatch_20: '#a7f0ba', swatch_30: '#6fdc8c', swatch_40: '#42be65', swatch_50: '#24a148', swatch_60: '#198038', swatch_70: '#0e6027', swatch_80: '#044317', swatch_90: '#022d0d', swatch_100: '#071908'};
 		case 'black':
-			return {noColor: 'none', white: '#ffffff', swatch_10: '#f2f4f8', swatch_20: '#dde1e6', swatch_30: '#000000', swatch_40: '#000000', swatch_50: '#000000', swatch_60: '#000000'};	
-		default:
-			return {noColor: 'none', white: '#ffffff', swatch_10: '#f2f4f8', swatch_20: '#dde1e6', swatch_30: '#c1c7cd', swatch_40: '#a2a9b0', swatch_50: '#878d96', swatch_60: '#697077'};
+			return {noColor: 'none', white: '#ffffff', swatch_10: '#f2f4f8', swatch_20: '#dde1e6', swatch_30: '#000000', swatch_40: '#000000', swatch_50: '#000000', swatch_60: '#000000', swatch_70: '#000000', swatch_80: '#000000', swatch_90: '#000000', swatch_100: '#000000'};
+		case 'gray':
+			return {noColor: 'none', white: '#ffffff', swatch_10: '#f2f4f8', swatch_20: '#dde1e6', swatch_30: '#c1c7cd', swatch_40: '#a2a9b0', swatch_50: '#878d96', swatch_60: '#697077', swatch_70: '#4d5358', swatch_80: '#343a3f', swatch_90: '#21272a', swatch_100: '#121619'};
 	}
 }
 
-mxIBM2MondrianBase.prototype.getIconColor = function(colorFamily) {
-	if(colorFamily === 'black')
-		return '#ffffff';
-	else
-		return '#000000';
-}
-
-mxIBM2MondrianBase.prototype.getLineColor = function(colorFamily, shapeLayout, colorFillIcon) {
-		if(shapeLayout === 'collapsed')
-		{
-			if(colorFillIcon === 'noColor' || colorFillIcon === 'white')
-				return mxIBM2MondrianBase.prototype.getSelectedColorSpecification(colorFamily).swatch_60;
-			else
-				return mxIBM2MondrianBase.prototype.getSelectedColorSpecification(colorFamily)[colorFillIcon];
-		}
-		else
-		{
-			return mxIBM2MondrianBase.prototype.getSelectedColorSpecification(colorFamily).swatch_60;
-		}
-}
-
-mxIBM2MondrianBase.prototype.getDividerLineColor = function(colorFamily, colorFillText) {
-	if(colorFillText === 'swatch_10')
-	{
-		return mxIBM2MondrianBase.prototype.getSelectedColorSpecification(colorFamily).swatch_30;
-	}
-	else
-	{
-		return mxIBM2MondrianBase.prototype.getSelectedColorSpecification(colorFamily).swatch_20;
-	}
-}
-
-/**
- * Function: getGroupBarWidth
- *
- * Default width for the groupBar.
- */
-mxIBM2MondrianBase.prototype.getGroupBarWidth = function(colorFillIcon)
+// A color swatch of 60 or higher is considered 'dark'
+mxIBM2MondrianBase.prototype.isDarkColor = function(paletteVersion,color,colorSwatch)
 {
-	if(colorFillIcon === 'noColor')
-		return 0;
+	if(color === '#000000') // black
+		return true;
+	else if(color === '#ffffff') // white
+		return false;
 	else
-		return 6;
+	{
+		var swatch = null; 
+		if(colorSwatch != null)
+			swatch = colorSwatch.split("_")[1];
+		if(swatch != null)
+			if(paletteVersion === 'v2')
+				return parseInt(swatch) >= 50;
+			else
+				return parseInt(swatch) >= 60;
+		else
+			return false;	
+	}
 }
+
+mxIBM2MondrianBase.prototype.colorIntensity = {
+	NO_COLOR: 'noColor',
+	WHITE: 'white',
+	VERY_LIGHT: 'veryLight',
+	LIGHT: 'light',
+	MEDIUM: 'medium',
+	DARK: 'dark'
+}
+
+mxIBM2MondrianBase.prototype.getColorSwatch = function(paletteVersion, colorFamily, colorIntensity, shapePart, shapeLayout, shapeType)
+{
+	if(shapeType === 'group' && shapePart === 'corner')
+	{
+		return mxIBM2MondrianBase.prototype.colorIntensity.NO_COLOR; // the icon in a group never has a fill
+	}
+	else
+	{
+		if(paletteVersion === 'v2')
+		{
+			if(shapePart === 'outerLine')// TODO: after v1/v2 decision made this must be fixed. Now you the color is determined by the Icon (Fill)
+			{
+				switch(colorIntensity) 
+				{
+					case mxIBM2MondrianBase.prototype.colorIntensity.DARK:
+						if(colorFamily === 'blue' || colorFamily === 'red' || colorFamily === 'gray') // TODO: check with Diana since the spec says Black for Gray
+							return 'swatch_80';
+						else
+							return 'swatch_70';
+					default:
+						if(colorFamily === 'blue' || colorFamily === 'gray')
+							return 'swatch_60';
+						else
+							return 'swatch_50';	
+						}
+			}
+			else
+			{
+				switch(colorIntensity)
+				{
+					case mxIBM2MondrianBase.prototype.colorIntensity.NO_COLOR:
+						return mxIBM2MondrianBase.prototype.colorIntensity.NO_COLOR;
+					case mxIBM2MondrianBase.prototype.colorIntensity.WHITE:
+						return mxIBM2MondrianBase.prototype.colorIntensity.WHITE;
+					case mxIBM2MondrianBase.prototype.colorIntensity.VERY_LIGHT:
+					case mxIBM2MondrianBase.prototype.colorIntensity.LIGHT:
+						return 'swatch_10';
+					case mxIBM2MondrianBase.prototype.colorIntensity.MEDIUM:
+						if(colorFamily === 'blue' || colorFamily === 'gray')
+							return 'swatch_60';
+						else
+							return 'swatch_50';
+					case mxIBM2MondrianBase.prototype.colorIntensity.DARK:
+						if(colorFamily === 'blue' || colorFamily === 'red' || colorFamily === 'gray') // TODO: check with Diana since the spec says Black for Gray
+							return 'swatch_80';
+						else
+							return 'swatch_70';
+				}	
+			}
+		}
+		else // paletteVersion === 'v1a' || paletteVersion === 'v1b'
+		{
+			if (shapePart === 'outerLine' && paletteVersion === 'v1b')
+				return 'swatch_60'
+			else if (shapePart === 'outerLine' && shapeLayout === 'expanded')
+				return 'swatch_60'
+			else if(shapePart === 'outerLine' && shapeLayout === 'collapsed' && (colorIntensity === 'noColor' || colorIntensity === 'white'))
+				return 'swatch_60';
+			else
+			{
+				switch(colorIntensity)
+				{
+					case mxIBM2MondrianBase.prototype.colorIntensity.NO_COLOR:
+						return mxIBM2MondrianBase.prototype.colorIntensity.NO_COLOR;
+					case mxIBM2MondrianBase.prototype.colorIntensity.WHITE:
+						return mxIBM2MondrianBase.prototype.colorIntensity.WHITE;
+					case mxIBM2MondrianBase.prototype.colorIntensity.VERY_LIGHT:
+						return 'swatch_10';
+					case mxIBM2MondrianBase.prototype.colorIntensity.LIGHT:
+						return 'swatch_30';
+					case mxIBM2MondrianBase.prototype.colorIntensity.MEDIUM:
+						return 'swatch_40';
+					case mxIBM2MondrianBase.prototype.colorIntensity.DARK:
+						return 'swatch_50';
+				}
+			}
+		}	
+	}
+}
+
+
+// The ShapeVisualDefinition contains all properties that define color of various parts of the Shape
+mxIBM2MondrianBase.prototype.getShapeVisualDefinition = function (mondrianVersion, shapeType, shapeLayout,
+							colorFamily, colorFillIcon, colorFillText, colorFillContainer) {	
+	// basic colors
+	const WHITE = '#ffffff';
+	const BLACK = '#000000';
+	const paletteVersion = mondrianVersion;
+
+	// VD properties
+	let shapeVD = {
+		outerLine: {color: null, colorSwatch: null},
+		bar: {color: null, visible: false, width: null},
+		corner: {color: null, colorSwatch: null},
+		icon: {color: null, colorSwatch: null},
+		titleBar: {color: null, colorSwatch: null},
+		dividerLine: {color: null, colorSwatch: null},
+		container: {color: null, colorSwatch: null},
+		decorator: {component: {color: WHITE, colorSwatch: null},}
+	};
+
+	// Shape Type Specific
+	if(shapeType === 'group') {
+		shapeVD.bar.visible = (shapeType === 'group' && colorFillIcon != 'noColor'); // color fill is a workaround to enable hiding the bar
+		shapeVD.bar.width = (shapeVD.bar.visible) ? 6 : 0;
+	}
+
+	// Get the Swatches for each Shape part
+	//outerline
+	shapeVD.outerLine.colorSwatch = this.getColorSwatch(paletteVersion, colorFamily, colorFillIcon, 'outerLine', shapeLayout, shapeType);
+
+	//bar
+	shapeVD.bar.colorSwatch = shapeVD.outerLine.colorSwatch;
+
+	//corner
+	shapeVD.corner.colorSwatch = this.getColorSwatch(paletteVersion, colorFamily, colorFillIcon, 'corner', shapeLayout, shapeType);
+
+	//titleBar
+	shapeVD.titleBar.colorSwatch = this.getColorSwatch(paletteVersion, colorFamily, colorFillText, 'titleBar', shapeLayout, shapeType);
+
+	//dividerLine		
+	shapeVD.dividerLine.colorSwatch = (shapeVD.titleBar.colorSwatch === 'swatch_10') ? 'swatch_30' : 'swatch_20';
+
+	//container
+	shapeVD.container.colorSwatch = this.getColorSwatch(paletteVersion, colorFamily, colorFillContainer, 'container', shapeLayout, shapeType);
+
+	// Get the HEX values for each Shape part
+	shapeVD.outerLine.color = this.getSelectedColorSpecification(colorFamily)[shapeVD.outerLine.colorSwatch];
+	shapeVD.bar.color = this.getSelectedColorSpecification(colorFamily)[shapeVD.bar.colorSwatch];
+	shapeVD.corner.color = this.getSelectedColorSpecification(colorFamily)[shapeVD.corner.colorSwatch];
+	shapeVD.titleBar.color = this.getSelectedColorSpecification(colorFamily)[shapeVD.titleBar.colorSwatch];
+	shapeVD.dividerLine.color = this.getSelectedColorSpecification(colorFamily)[shapeVD.dividerLine.colorSwatch];
+	shapeVD.container.color = this.getSelectedColorSpecification(colorFamily)[shapeVD.container.colorSwatch];
+
+	shapeVD.icon.color = (this.isDarkColor(paletteVersion, shapeVD.corner.color, shapeVD.corner.colorSwatch)) ?  WHITE : BLACK;
+	shapeVD.decorator.component.color = WHITE;
+
+	return shapeVD;
+};
 
 mxIBM2MondrianBase.prototype.customProperties = [
+	{name:'version', dispName: '[TMP: Visual Standard]', type:'enum', defVal:'v1a',
+		enumList:[{val:'v1a', dispName: 'v1a - 3-color intensities, no outerline for collapsed'}, {val:'v1b', dispName: 'v1b - 3-color intensities, outerline for collapsed'}, {val:'v2', dispName: 'v2 - 2-color intensities'}]},
 	{name:'shapeType', dispName:'Type', type:'enum', defVal:'pn',
 		enumList:[{val:'actor', dispName: 'Actor'}, {val:'ts', dispName: 'Target System'}, {val:'ln', dispName: 'Logical Node'}, {val:'lc', dispName: 'Logical Component'}, {val:'pn', dispName: 'Prescribed Node'}, {val:'pc', dispName: 'Prescribed Component'}, {val:'group', dispName: 'Group'}]},
 	{name:'shapeLayout', dispName:'Layout', type:'enum', defVal:'expanded',
@@ -139,12 +269,12 @@ mxIBM2MondrianBase.prototype.customProperties = [
 		enumList:[{val:'noIcon', dispName: '[no icon]'}, {val:'stencilIcon', dispName: '[stencil icon]'}, {val:'imageIcon', dispName: '[image icon]'}]},
 	{name:'colorFamily', dispName:'Color', type:'enum', defVal:'blue',
 		enumList:[{val:'blue', dispName: 'Blue'}, {val:'black', dispName: 'Black'}, {val:'cyan', dispName: 'Cyan'}, {val:'green', dispName: 'Green'}, {val:'gray', dispName: 'Gray'}, {val:'magenta', dispName: 'Magenta'}, {val:'purple', dispName: 'Purple'}, {val:'red', dispName: 'Red'}, {val:'teal', dispName: 'Teal'}]},
-	{name:'colorFillIcon', dispName:'Fill (Icon)', type:'enum', defVal:'swatch_40',
-		enumList:[{val:'noColor', dispName: 'None'}, {val:'swatch_30', dispName: 'Light'}, {val:'swatch_40', dispName: 'Medium'}, {val:'swatch_50', dispName: 'Dark'}]},
+	{name:'colorFillIcon', dispName:'Fill (Icon)', type:'enum', defVal:'medium',
+		enumList:[{val:'noColor', dispName: 'None'}, {val:'light', dispName: 'Light'}, {val:'medium', dispName: 'Medium'}, {val:'dark', dispName: 'Dark'}]},
 	{name:'colorFillText', dispName:'Fill (Text)', type:'enum', defVal:'white',
-		enumList:[{val:'noColor', dispName: 'None'}, {val:'white', dispName: 'White'}, {val:'swatch_10', dispName: 'Very Light'}]},
+		enumList:[{val:'noColor', dispName: 'None'}, {val:'white', dispName: 'White'}, {val:'veryLight', dispName: 'Very Light'}]},
 	{name:'colorFillContainer', dispName:'Fill (Container)', type:'enum', defVal:'white',
-		enumList:[{val:'noColor', dispName: 'None'}, {val:'white', dispName: 'White'}, {val:'swatch_10', dispName: 'Very Light'}]},
+		enumList:[{val:'noColor', dispName: 'None'}, {val:'white', dispName: 'White'}, {val:'veryLight', dispName: 'Very Light'}]},
 	{name:'positionText', dispName:'Position (Text)', type:'enum', defVal:'bottom',
 		enumList:[{val:'bottom', dispName: 'Bottom'}, {val:'top', dispName: 'Top'}, {val:'left', dispName: 'Left'}, {val:'right', dispName: 'Right'}]},
 	];
@@ -161,9 +291,9 @@ mxIBM2MondrianBase.prototype.cornerRadius = 8;
 /**
  * Variable: textSpacing
  *
- * Default value for text spacing. Default is 8.
+ * Default value for text spacing. Default is 4.
  */
-mxIBM2MondrianBase.prototype.textSpacing = 8;
+mxIBM2MondrianBase.prototype.textSpacing = 4;
 
 /**
  * Variable: targetSystemRadius
@@ -252,9 +382,84 @@ mxIBM2MondrianBase.prototype.init = function(container)
 
 	mxShape.prototype.init.apply(this, arguments);
 
+	this.templateConversion();
+
 	this.cellID = this.state.cell.id;
 	this.installListeners();
-};	
+};
+
+/* temporary function to support coversion of old diagrams  */
+mxIBM2MondrianBase.prototype.colorConversion = function(colorValue)
+{
+	switch(colorValue)
+	{
+		case 'swatch_10':
+			return 'veryLight';
+		case 'swatch_30':
+			return 'light';
+		case 'swatch_40':
+			return 'medium';
+		case 'swatch_50':
+			return 'dark';
+		default:
+			return colorValue;
+	}
+}
+
+mxIBM2MondrianBase.prototype.templateConversion = function()
+{
+	try {
+		if(this.state != null)
+		{
+			let styleCurrent = null;
+			let styleUpdate = false;
+		
+			if(this.state.view.graph.model != null && this.state.cell != null)
+				styleCurrent = this.state.view.graph.model.getStyle(this.state.cell);
+		
+			//const shapeVersion = mxIBM2MondrianBase.prototype.getStyleValue(styleCurrent, mxIBM2MondrianBase.prototype.cst.MONDRIAN_VERSION);
+		
+			//if(shapeVersion == 'undefined')
+			//{
+			//}
+			if(styleCurrent != null)
+				styleUpdate = (styleCurrent.indexOf('swatch_') > 0)
+		
+			if(styleUpdate)
+			{
+				newStyle = styleCurrent.replace(/swatch_10/g, 'veryLight');
+				newStyle = newStyle.replace(/swatch_30/g, 'light');
+				newStyle = newStyle.replace(/swatch_40/g, 'medium');
+				newStyle = newStyle.replace(/swatch_50/g, 'dark');
+		
+				//console.log(newStyle);
+				this.state.view.graph.model.beginUpdate();
+				try
+				{
+					if(this.state.style['colorFillIcon'] != null)
+						this.state.style['colorFillIcon'] = this.colorConversion(this.state.style['colorFillIcon']);
+					if(this.state.style['colorFillText'] != null)
+						this.state.style['colorFillText'] = this.colorConversion(this.state.style['colorFillText']);
+					if(this.state.style['colorFillContainer'] != null)
+						this.state.style['colorFillContainer'] = this.colorConversion(this.state.style['colorFillContainer']);
+
+					this.state.view.graph.model.setStyle(this.state.cell, newStyle);
+				}
+				catch(err)
+				{
+					console.log(err);
+				}
+				finally
+				{
+					this.state.view.graph.model.endUpdate();
+				}
+			}			
+		}			
+	} catch (error) {
+		console.log(error);
+	}
+
+}
 
 mxIBM2MondrianBase.prototype.installListeners = function()
 {
@@ -381,22 +586,15 @@ mxIBM2MondrianBase.prototype.getStyleValue = function(style, key)
  */
 mxIBM2MondrianBase.prototype.redraw = function()
 {
+	this.version = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.MONDRIAN_VERSION, mxIBM2MondrianBase.prototype.cst.MONDRIAN_VERSION_DEFAULT);	
 	this.shapeType = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.SHAPE_TYPE, mxIBM2MondrianBase.prototype.cst.SHAPE_TYPE_DEFAULT);	
 	this.shapeLayout = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.SHAPE_LAYOUT, mxIBM2MondrianBase.prototype.cst.SHAPE_LAYOUT_DEFAULT);
-
-	//if(this.shapeType === 'group') // a group can only be expanded so should ignore the shapeLayout setting
-	//	this.shapeLayout = 'expanded';
-	//else if(this.shapeType === 'actor') // an actor can only be expanded so should ignore the shapeLayout setting
-	//	this.shapeLayout = 'collapsed';
-	
 	this.shapeMultiplicity = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.SHAPE_MULTIPLICITY, mxIBM2MondrianBase.prototype.cst.SHAPE_MULTIPLICITY_DEFAULT);
-	
 	this.iconImage = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.ICON_IMAGE, mxIBM2MondrianBase.prototype.cst.ICON_IMAGE_DEFAULT);
 	this.colorFamily = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.COLOR_FAMILY, mxIBM2MondrianBase.prototype.cst.COLOR_FAMILY_DEFAULT);
 	this.colorFillIcon = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.COLOR_FILL_ICON, mxIBM2MondrianBase.prototype.cst.COLOR_FILL_ICON_DEFAULT);
 	this.colorFillText = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.COLOR_FILL_TEXT, mxIBM2MondrianBase.prototype.cst.COLOR_FILL_TEXT_DEFAULT);
 	this.colorFillContainer = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.COLOR_FILL_CONTAINER, mxIBM2MondrianBase.prototype.cst.COLOR_FILL_CONTAINER_DEFAULT);
-
 	this.positionText = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.POSITION_TEXT, mxIBM2MondrianBase.prototype.cst.POSITION_TEXT_DEFAULT);
 
 	mxShape.prototype.redraw.apply(this, arguments);
@@ -417,9 +615,13 @@ mxIBM2MondrianBase.prototype.cellMustRestyle = function(currentStyle, newStyle)
 	return newStyle != currentStyle;
 }
 
-
 mxIBM2MondrianBase.prototype.paintVertexShape = function(c, x, y, w, h)
 {
+	this.shapeVisualDefinition = mxIBM2MondrianBase.prototype.getShapeVisualDefinition(
+		this.version,
+		this.shapeType, this.shapeLayout,
+		this.colorFamily, this.colorFillIcon, this.colorFillText, this.colorFillContainer);
+
 	c.translate(x, y);
 	
 	this.paintContainer(c, x, y, w, h);
@@ -443,7 +645,7 @@ mxIBM2MondrianBase.prototype.paintContainer = function(c, x, y, w, h)
 	{
 		if(this.shapeType === 'ln' || this.shapeType === 'lc')
 		{
-			c.setFillColor(this.getSelectedColorSpecification(this.colorFamily)[this.colorFillContainer]);
+			c.setFillColor(this.shapeVisualDefinition.container.color);
 			c.begin();
 			c.moveTo(0, startContainer);
 			c.lineTo(w, startContainer);
@@ -456,7 +658,7 @@ mxIBM2MondrianBase.prototype.paintContainer = function(c, x, y, w, h)
 			c.fill();
 		}
 		else {
-			c.setFillColor(this.getSelectedColorSpecification(this.colorFamily)[this.colorFillContainer]);
+			c.setFillColor(this.shapeVisualDefinition.container.color);
 			c.rect(0, startContainer, w, endContainer);
 			c.fill();
 		}	
@@ -470,15 +672,15 @@ mxIBM2MondrianBase.prototype.paintContainer = function(c, x, y, w, h)
  */
 mxIBM2MondrianBase.prototype.paintTitleBar = function(c, x, y, w, h)
 {
-	const minHeight = Math.min(h, this.titleBarHeight);
-	if(this.shapeLayout != 'icon')
+	if(this.shapeLayout === 'expanded' && this.shapeVisualDefinition.titleBar.color != 'none')
 	{
+		const minHeight = Math.min(h, this.titleBarHeight);
 		if(this.shapeType === 'ln' || this.shapeType === 'lc')
 		{
 			
 			if (h > this.titleBarHeight)
 			{
-				c.setFillColor(this.getSelectedColorSpecification(this.colorFamily)[this.colorFillText]);
+				c.setFillColor(this.shapeVisualDefinition.titleBar.color);
 				c.begin();
 				c.moveTo(this.cornerRadius, 0);
 				c.lineTo(w - this.cornerRadius, 0);
@@ -492,20 +694,20 @@ mxIBM2MondrianBase.prototype.paintTitleBar = function(c, x, y, w, h)
 			}
 			else
 			{
-				c.setFillColor(this.getSelectedColorSpecification(this.colorFamily)[this.colorFillText]);
+				c.setFillColor(this.shapeVisualDefinition.titleBar.color);
 				c.roundrect(0, 0, w, minHeight, this.cornerRadius, this.cornerRadius);
 				c.fill();
 			}
 		}
 		else if(this.shapeType === 'pn' || this.shapeType === 'pc' || this.shapeType === 'group')
 		{
-			c.setFillColor(this.getSelectedColorSpecification(this.colorFamily)[this.colorFillText]);
+			c.setFillColor(this.shapeVisualDefinition.titleBar.color);
 			c.rect(0, 0, w, minHeight);
 			c.fill();
 		}
 		else if(this.shapeType === 'ts')
 		{
-			c.setFillColor(this.getSelectedColorSpecification(this.colorFamily)[this.colorFillText]);
+			c.setFillColor(this.shapeVisualDefinition.titleBar.color);
 			c.begin();
 			c.moveTo(this.targetSystemRadius, 0);
 			c.lineTo(w - this.targetSystemRadius, 0);
@@ -528,16 +730,13 @@ mxIBM2MondrianBase.prototype.paintTitleBar = function(c, x, y, w, h)
  */
 mxIBM2MondrianBase.prototype.paintIconBox = function(c, x, y, w, h)
 {
-	if(this.shapeType === 'group')
-		c.setFillColor(this.getSelectedColorSpecification(this.colorFamily)['noColor']);
-	else
-		c.setFillColor(this.getSelectedColorSpecification(this.colorFamily)[this.colorFillIcon]);
-
 	const minWidth = Math.min(w, this.getIconBoxWidth());
 	const minHeight = Math.min(h, this.titleBarHeight);
 
 	if(minWidth > 0)
 	{
+		c.setFillColor(this.shapeVisualDefinition.corner.color);
+
 		if(this.shapeType === 'actor')
 		{
 			c.ellipse(0, 0, minWidth, minHeight);
@@ -621,13 +820,13 @@ mxIBM2MondrianBase.prototype.paintShape = function(c, x, y, w, h)
 	
 	if(this.shapeType === 'actor')
 	{
-		c.setStrokeColor(this.getLineColor(this.colorFamily, this.shapeLayout, this.colorFillIcon));
+		c.setStrokeColor(this.shapeVisualDefinition.outerLine.color);
 		c.ellipse(0, 0, shapeWidth, shapeHeigth);
 		c.stroke();
 	}
 	else if(this.shapeType === 'ts')
 	{
-		c.setStrokeColor(this.getLineColor(this.colorFamily, this.shapeLayout, this.colorFillIcon));
+		c.setStrokeColor(this.shapeVisualDefinition.outerLine.color);
 		c.begin();
 		c.moveTo(this.targetSystemRadius, 0);
 		c.lineTo(shapeWidth - this.targetSystemRadius, 0);
@@ -641,13 +840,13 @@ mxIBM2MondrianBase.prototype.paintShape = function(c, x, y, w, h)
 	{
 		if (h > this.titleBarHeight)
 		{
-			c.setStrokeColor(this.getDividerLineColor(this.colorFamily, this.colorFillText));
+			c.setStrokeColor(this.shapeVisualDefinition.dividerLine.color);
 			c.begin();
 			c.moveTo(0, this.titleBarHeight);
 			c.lineTo(shapeWidth, this.titleBarHeight);		
 			c.stroke();
 		}
-		c.setStrokeColor(this.getLineColor(this.colorFamily, this.shapeLayout, this.colorFillIcon));
+		c.setStrokeColor(this.shapeVisualDefinition.outerLine.color);
 		c.roundrect(0, 0, shapeWidth, shapeHeigth, this.cornerRadius, this.cornerRadius);
 		c.stroke();
 		
@@ -655,8 +854,7 @@ mxIBM2MondrianBase.prototype.paintShape = function(c, x, y, w, h)
 
 		if(this.shapeType === 'lc')
 		{
-			c.setFillColor(this.getSelectedColorSpecification(this.colorFamily)['white']);
-			//c.setFillColor(this.getSelectedColorSpecification(this.colorFamily)[this.colorFillIcon]);
+			c.setFillColor(this.shapeVisualDefinition.decorator.component.color);
 			c.rect(componentDecoratorOffset, 12, componentDecoratorWidth, componentDecoratorHeight);
 			c.fillAndStroke();
 			c.rect(componentDecoratorOffset, 32, componentDecoratorWidth, componentDecoratorHeight);
@@ -667,13 +865,13 @@ mxIBM2MondrianBase.prototype.paintShape = function(c, x, y, w, h)
 	{
 		if (h > this.titleBarHeight)
 		{
-			c.setStrokeColor(this.getDividerLineColor(this.colorFamily, this.colorFillText));
+			c.setStrokeColor(this.shapeVisualDefinition.dividerLine.color);
 			c.begin();
 			c.moveTo(0, this.titleBarHeight);
 			c.lineTo(shapeWidth, this.titleBarHeight);		
 			c.stroke();
 		}
-		c.setStrokeColor(this.getLineColor(this.colorFamily, this.shapeLayout, this.colorFillIcon));
+		c.setStrokeColor(this.shapeVisualDefinition.outerLine.color);
 		c.rect(0, 0, shapeWidth, shapeHeigth);
 		c.stroke();
 
@@ -681,8 +879,7 @@ mxIBM2MondrianBase.prototype.paintShape = function(c, x, y, w, h)
 
 		if(this.shapeType === 'pc')
 		{
-			c.setFillColor(this.getSelectedColorSpecification(this.colorFamily)['white']);
-			//c.setFillColor(this.getSelectedColorSpecification(this.colorFamily)[this.colorFillIcon]);
+			c.setFillColor(this.shapeVisualDefinition.decorator.component.color);
 			c.rect(componentDecoratorOffset, 12, componentDecoratorWidth, componentDecoratorHeight);
 			c.fillAndStroke();
 			c.rect(componentDecoratorOffset, 32, componentDecoratorWidth, componentDecoratorHeight);
@@ -691,15 +888,18 @@ mxIBM2MondrianBase.prototype.paintShape = function(c, x, y, w, h)
 	}
 	else if(this.shapeType === 'group')
 	{
-		c.setStrokeColor(this.getLineColor(this.colorFamily, this.shapeLayout, this.colorFillIcon));
+		c.setStrokeColor(this.shapeVisualDefinition.outerLine.color);
 		c.rect(0, 0, shapeWidth, shapeHeigth);
 		c.stroke();
 
 		this.paintShapeMultiplicity(c, shapeWidth, shapeHeigth, 'rectangular');
 
-		c.setFillColor(this.getLineColor(this.colorFamily, this.shapeLayout, this.colorFillIcon));
-		c.rect(0, 0, this.getGroupBarWidth(this.colorFillIcon), this.titleBarHeight);
-		c.fill();
+		if(this.shapeVisualDefinition.bar.visible)
+		{
+			c.setFillColor(this.shapeVisualDefinition.outerLine.color);
+			c.rect(0, 0, this.shapeVisualDefinition.bar.width, this.titleBarHeight);
+			c.fill();	
+		}
 	}
 };
 
@@ -759,7 +959,7 @@ mxIBM2MondrianBase.prototype.paintIcon = function(c, x, y, w, h)
 	}
 	else if(this.shapeType === 'group')
 	{
-		positionX = this.getGroupBarWidth(this.colorFillIcon) + this.iconSpacing;
+		positionX = this.shapeVisualDefinition.bar.width + this.iconSpacing;
 	}
 
 	if(this.iconImage === 'stencilIcon')
@@ -773,7 +973,7 @@ mxIBM2MondrianBase.prototype.paintIcon = function(c, x, y, w, h)
 
 			c.save();
 			c.setStrokeColor('none');
-			c.setFillColor(this.getIconColor(this.colorFamily));
+			c.setFillColor(this.shapeVisualDefinition.icon.color);
 			c.setDashed(false);
 			bgSt1.strokewidth = 1;
 			bgSt1.drawShape(c, this, positionX, positionY, this.iconSize, this.iconSize);
@@ -794,13 +994,7 @@ mxIBM2MondrianBase.prototype.getIconBoxWidth = function()
 {
 	if(this.iconImage === 'noIcon')
 	{
-		switch(this.shapeType)
-		{
-			case 'group':
-				return this.getGroupBarWidth(this.colorFillIcon);
-			default:
-				return 0;
-		}
+		return this.shapeVisualDefinition.bar.width;
 	}
 	else
 	{
@@ -812,7 +1006,7 @@ mxIBM2MondrianBase.prototype.getIconBoxWidth = function()
 				else
 					return (2 * this.iconSpacing + this.iconSize - 4);
 			case 'group':
-				return (this.iconSpacing + this.iconSize + this.getGroupBarWidth(this.colorFillIcon));
+				return (this.iconSpacing + this.iconSize + this.shapeVisualDefinition.bar.width);
 			default:
 				return (2 * this.iconSpacing + this.iconSize);
 		}
