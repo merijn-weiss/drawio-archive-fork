@@ -46,7 +46,7 @@
 			'Instance Group': {icon: 'default', format: GROUP_FORMAT, color: VPC_COLOR},
 			'Physical Server': {icon: 'default', format: GROUP_FORMAT, color: VPC_COLOR},
 			'Endpoints': {icon: 'default', format: GROUP_FORMAT, color: VPC_COLOR},
-			'Security Group': {icon: 'security', format: GROUP_TYPE_NOCONTAINER, color: SECURITY_COLOR},
+			'Security Group': {icon: 'security', format: GROUP_FORMAT_NOCONTAINER, color: SECURITY_COLOR},
 
 			'Kubernetes Cluster': {icon: 'default', format: GROUP_FORMAT, color: KUBE_COLOR},
 			'OpenShift Cluster': {icon: 'default', format: GROUP_FORMAT, color: KUBE_COLOR},
