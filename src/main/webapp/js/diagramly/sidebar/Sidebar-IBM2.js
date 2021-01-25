@@ -40,95 +40,95 @@
 
 		const stencils = {
 		   'Groups': { 
-			'IBM Cloud': {icon: 'ibm-cloud', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Region': {icon: 'flag', type: GROUP, multiplicity: false, color: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Region Alt': {icon: 'location', type: GROUP, multiplicity: false, color: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Zone': {icon: 'data--base--alt', type: GROUP, multiplicity: false, color: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Cloud Services': {icon: 'default', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Classic Infrastructure': {icon: 'default', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Account': {icon: 'user', type: GROUP, multiplicity: false, color: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Access Group': {icon: 'credentials', type: GROUP, multiplicity: false, color: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Resource Group': {icon: 'collaborate', type: GROUP, multiplicity: false, color: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'IBM Cloud': {icon: 'ibm-cloud', type: GROUP, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Region': {icon: 'flag', type: GROUP, color: {family: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Region Alt': {icon: 'location', type: GROUP, color: {family: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Zone': {icon: 'data--base--alt', type: GROUP, color: {family: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Cloud Services': {icon: 'default', type: GROUP, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Classic Infrastructure': {icon: 'default', type: GROUP, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Account': {icon: 'user', type: GROUP, color: {family: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Access Group': {icon: 'credentials', type: GROUP, color: {family: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Resource Group': {icon: 'collaborate', type: GROUP, color: {family: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
 
-			'VPC': {icon: 'virtual-private-cloud', type: GROUP, multiplicity: false, color: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Subnet:ACL': {icon: 'default', type: GROUP, multiplicity: false, color: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Virtual Server': {icon: 'virtual-machine', type: GROUP, multiplicity: false, color: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Instance Group': {icon: 'default', type: GROUP, multiplicity: false, color: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Physical Server': {icon: 'default', type: GROUP, multiplicity: false, color: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Endpoints': {icon: 'default', type: GROUP, multiplicity: false, color: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Security Group': {icon: 'security', type: GROUP, multiplicity: false, color: SECURITY_COLOR,  layout: EXPANDED, container: NO_CONTAINER},
+			'VPC': {icon: 'virtual-private-cloud', type: GROUP, color: {family: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Subnet:ACL': {icon: 'default', type: GROUP, color: {family: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Virtual Server': {icon: 'virtual-machine', type: GROUP, color: {family: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Instance Group': {icon: 'default', type: GROUP, color: {family: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Physical Server': {icon: 'default', type: GROUP, color: {family: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Endpoints': {icon: 'default', type: GROUP, color: {family: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Security Group': {icon: 'security', type: GROUP, color: {family: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: NO_CONTAINER}},
 
-			'Kubernetes Cluster': {icon: 'default', type: GROUP, multiplicity: false, color: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'OpenShift Cluster': {icon: 'default', type: GROUP, multiplicity: false, color: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Kubernetes Service': {icon: 'default', type: GROUP, multiplicity: false, color: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Kubernetes Replica Set': {icon: 'default', type: GROUP, multiplicity: false, color: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Kubernetes Pod': {icon: 'default', type: GROUP, multiplicity: false, color: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Kubernetes Namespace': {icon: 'default', type: GROUP, multiplicity: false, color: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Kubernetes Cluster': {icon: 'default', type: GROUP, color: {family: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'OpenShift Cluster': {icon: 'default', type: GROUP, color: {family: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Kubernetes Service': {icon: 'default', type: GROUP, color: {family: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Kubernetes Replica Set': {icon: 'default', type: GROUP, color: {family: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Kubernetes Pod': {icon: 'default', type: GROUP, color: {family: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Kubernetes Namespace': {icon: 'default', type: GROUP, color: {family: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
 
-			'Public Network': {icon: 'events', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Enterprise Network': {icon: 'enterprise', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Cloud Foundry': {icon: 'default', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Data Center': {icon: 'default', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Point of Presence': {icon: 'default', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'Overlay Network': {icon: 'default', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
-			'VLAN': {icon: 'default', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Public Network': {icon: 'events', type: GROUP, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Enterprise Network': {icon: 'enterprise', type: GROUP, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Cloud Foundry': {icon: 'default', type: GROUP, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Data Center': {icon: 'default', type: GROUP, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Point of Presence': {icon: 'default', type: GROUP, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'Overlay Network': {icon: 'default', type: GROUP, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
+			'VLAN': {icon: 'default', type: GROUP, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: EXPANDED, multiplicity: false, container: CONTAINER}},
 		},
 
 		'Compute': {
-			'Virtual Server': {icon: 'virtual-machine', type: LOGICAL_NODE, multiplicity: false, color: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Instance Group': {icon: 'default', type: LOGICAL_NODE, multiplicity: false, color: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Virtual Server': {icon: 'virtual-machine', type: LOGICAL_NODE, color: {family: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Instance Group': {icon: 'default', type: LOGICAL_NODE, color: {family: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
 		},
 
 		'Compute Devices': {
-			'Physical Server': {icon: 'archive', type: LOGICAL_NODE, multiplicity: false, color: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Mobile Device': {icon: 'mobile', type: LOGICAL_NODE, multiplicity: false, color: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Tablet Device': {icon: 'tablet', type: LOGICAL_NODE, multiplicity: false, color: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Laptop Device': {icon: 'laptop', type: LOGICAL_NODE, multiplicity: false, color: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Desktop Computer': {icon: 'devices', type: LOGICAL_NODE, multiplicity: false, color: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Physical Server': {icon: 'archive', type: LOGICAL_NODE, color: {family: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Mobile Device': {icon: 'mobile', type: LOGICAL_NODE, color: {family: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Tablet Device': {icon: 'tablet', type: LOGICAL_NODE, color: {family: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Laptop Device': {icon: 'laptop', type: LOGICAL_NODE, color: {family: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Desktop Computer': {icon: 'devices', type: LOGICAL_NODE, color: {family: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
 		},
 
 		'Network': {
-			'Floating IP': {icon: 'connect', type: LOGICAL_NODE, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Transit Gateway': {icon: 'default', type: LOGICAL_NODE, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Endpoints': {icon: 'default', type: LOGICAL_NODE, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Floating IP': {icon: 'connect', type: LOGICAL_NODE, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Transit Gateway': {icon: 'default', type: LOGICAL_NODE, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Endpoints': {icon: 'default', type: LOGICAL_NODE, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
 		},
 
 		'Network Devices': {
-			'Application Load Balancer': {icon: 'parent-child', type: LOGICAL_NODE, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Network Load Balancer': {icon: 'parent-child', type: LOGICAL_NODE, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Public Gateway': {icon: 'network--2', type: LOGICAL_NODE, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Edge Node': {icon: 'edge-node', type: LOGICAL_NODE, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Application Load Balancer': {icon: 'parent-child', type: LOGICAL_NODE, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Network Load Balancer': {icon: 'parent-child', type: LOGICAL_NODE, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Public Gateway': {icon: 'network--2', type: LOGICAL_NODE, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Edge Node': {icon: 'edge-node', type: LOGICAL_NODE, color: {family: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
 		},
 
 		'Security': {
-			'VPN': {icon: 'VPN', type: LOGICAL_NODE, multiplicity: false, color: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'VPN Policy': {icon: 'policy', type: LOGICAL_NODE, multiplicity: false, color: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Identity and Access Manager': {icon: 'fingerprint-recognition', type: LOGICAL_NODE, multiplicity: false, color: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Credentials': {icon: 'credentials', type: LOGICAL_NODE, multiplicity: false, color: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Rule': {icon: 'rule', type: LOGICAL_NODE, multiplicity: false, color: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'VPN': {icon: 'VPN', type: LOGICAL_NODE, color: {family: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'VPN Policy': {icon: 'policy', type: LOGICAL_NODE, color: {family: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Identity and Access Manager': {icon: 'fingerprint-recognition', type: LOGICAL_NODE, color: {family: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Credentials': {icon: 'credentials', type: LOGICAL_NODE, color: {family: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Rule': {icon: 'rule', type: LOGICAL_NODE, color: {family: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
 		},
 
 		'Security Devices': {
-			'VPN Gateway': {icon: 'default', type: LOGICAL_NODE, multiplicity: false, color: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'VPN Gateway': {icon: 'default', type: LOGICAL_NODE, color: {family: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
 		},
 
 		'Storage': {
-			'Object Storage Accessor': {icon: 'default', type: LOGICAL_NODE, multiplicity: false, color: STORAGE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Object Storage Slicestor': {icon: 'default', type: LOGICAL_NODE, multiplicity: false, color: STORAGE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Object Storage Accessor': {icon: 'default', type: LOGICAL_NODE, color: {family: STORAGE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Object Storage Slicestor': {icon: 'default', type: LOGICAL_NODE, color: {family: STORAGE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
 		},
 
 		'Storage Devices': {
-			'Block Storage': {icon: 'default', type: LOGICAL_NODE, multiplicity: false, color: STORAGE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'File Storage': {icon: 'default', type: LOGICAL_NODE, multiplicity: false, color: STORAGE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Object Storage': {icon: 'object-storage', type: LOGICAL_NODE, multiplicity: false, color: STORAGE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Block Storage': {icon: 'default', type: LOGICAL_NODE, color: {family: STORAGE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'File Storage': {icon: 'default', type: LOGICAL_NODE, color: {family: STORAGE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Object Storage': {icon: 'object-storage', type: LOGICAL_NODE, color: {family: STORAGE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
 		},
 
 		'Users': {
-			'User': {icon: 'user', type: ACTOR, multiplicity: false, color: USER_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Users': {icon: 'group', type: ACTOR, multiplicity: false, color: USER_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Events': {icon: 'events', type: ACTOR, multiplicity: false, color: USER_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Collaborate': {icon: 'collaborate', type: ACTOR, multiplicity: false, color: USER_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
-			'Web Browser': {icon: 'terminal', type: ACTOR, multiplicity: false, color: USER_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'User': {icon: 'user', type: ACTOR, color: {family: USER_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Users': {icon: 'group', type: ACTOR, color: {family: USER_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Events': {icon: 'events', type: ACTOR, color: {family: USER_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Collaborate': {icon: 'collaborate', type: ACTOR, color: {family: USER_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
+			'Web Browser': {icon: 'terminal', type: ACTOR, color: {family: USER_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE}, format: {layout: COLLAPSED, multiplicity: false, container: CONTAINER}},
 		   },
 		};
 
@@ -143,7 +143,7 @@
 					var extraStyle = '';
 					var shapeId = '';
 
-					var bg = Sidebar.prototype.addIBM2MondrianVertexTemplateFactory(shape.type, shape.layout, shape.color, shape.container, styleFont, extraStyle, shapeId, name, shape.icon);
+					var bg = Sidebar.prototype.addIBM2MondrianVertexTemplateFactory(shape.type, shape.format.layout, shape.color.family, shape.format.container, styleFont, extraStyle, shapeId, name, shape.icon);
    					return sb.createVertexTemplateFromCells([bg], bg.geometry.width, bg.geometry.height, name);
 				}))
 			}
