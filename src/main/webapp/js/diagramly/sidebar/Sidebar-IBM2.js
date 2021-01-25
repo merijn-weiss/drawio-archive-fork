@@ -5,436 +5,150 @@
 		const dt = 'ibm mondrian ';
 		const MBS = Sidebar.prototype.IBM2MondrianBaseShape;
 
+		const ACTOR = MBS.SHAPE_TYPE.ACTOR;
+		const GROUP = MBS.SHAPE_TYPE.GROUP;
+		const LOGICAL_NODE = MBS.SHAPE_TYPE.LOGICAL_NODE;
+		const PRESCRIBED_NODE = MBS.SHAPE_TYPE.PRESCRIBED_NODE;
+
+		const CONTAINER = MBS.SHAPE_CONTAINER.YES_TRANSPARENT;
+		const NO_CONTAINER = MBS.SHAPE_CONTAINER.NO_TRANSPARENT;
+
+		const COLLAPSED = MBS.SHAPE_LAYOUT.COLLAPSED;
+		const EXPANDED = MBS.SHAPE_LAYOUT.EXPANDED;
+
+		const FILL_ICON_NONE = 'none';
+		const FILL_ICON_LIGHT = 'none';
+		const FILL_ICON_MEDIUM = 'none';
+		const FILL_ICON_DARK = 'none';
+
+		const FILL_CONTAINER_NONE = 'none';
+		const FILL_CONTAINER_WHITE = 'none';
+		const FILL_CONTAINER_LIGHT = 'none';
+
+		const FILL_TEXT_NONE = 'none';
+		const FILL_TEXT_WHITE = 'none';
+		const FILL_TEXT_LIGHT = 'none';
+
+		const ACCOUNT_COLOR = MBS.COLOR_FAMILY.GRAY;
+		const COMPUTE_COLOR = MBS.COLOR_FAMILY.BLUE;
+		const KUBE_COLOR = MBS.COLOR_FAMILY.TEAL;
+		const NETWORK_COLOR = MBS.COLOR_FAMILY.BLUE;
+		const SECURITY_COLOR = MBS.COLOR_FAMILY.RED;
+		const STORAGE_COLOR = MBS.COLOR_FAMILY.BLUE;
+		const USER_COLOR = MBS.COLOR_FAMILY.BLACK;
+		const VPC_COLOR = MBS.COLOR_FAMILY.GREEN;
+
 		const stencils = {
 		   'Groups': { 
-			'Cloud Groups':
-				{iconName: 'ibm-cloud',
-				 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.GRAY, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'IBM Cloud':
-				{iconName: 'ibm-cloud',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Region':
-				{iconName: 'flag',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GRAY, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Region Alt':
-				{iconName: 'location',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GRAY, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Zone':
-				{iconName: 'data--base--alt',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GRAY, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Cloud Services':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Classic Infrastructure':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Account':
-				{iconName: 'user',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GRAY, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Access Group':
-				{iconName: 'credentials',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GRAY, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Resource Group':
-				{iconName: 'collaborate',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GRAY, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
+			'IBM Cloud': {icon: 'ibm-cloud', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Region': {icon: 'flag', type: GROUP, multiplicity: false, color: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Region Alt': {icon: 'location', type: GROUP, multiplicity: false, color: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Zone': {icon: 'data--base--alt', type: GROUP, multiplicity: false, color: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Cloud Services': {icon: 'default', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Classic Infrastructure': {icon: 'default', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Account': {icon: 'user', type: GROUP, multiplicity: false, color: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Access Group': {icon: 'credentials', type: GROUP, multiplicity: false, color: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Resource Group': {icon: 'collaborate', type: GROUP, multiplicity: false, color: ACCOUNT_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
 
-			'VPC Groups':
-				{iconName: 'virtual-private-cloud',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.GRAY, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'VPC':
-				{iconName: 'virtual-private-cloud',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GREEN,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Subnet:ACL':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GREEN,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Virtual Server':
-				{iconName: 'virtual-machine',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GREEN,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Instance Group':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GREEN,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Physical Server':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GREEN,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Endpoints':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GREEN,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Security Group':
-				{iconName: 'security',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.RED,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
+			'VPC': {icon: 'virtual-private-cloud', type: GROUP, multiplicity: false, color: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Subnet:ACL': {icon: 'default', type: GROUP, multiplicity: false, color: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Virtual Server': {icon: 'virtual-machine', type: GROUP, multiplicity: false, color: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Instance Group': {icon: 'default', type: GROUP, multiplicity: false, color: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Physical Server': {icon: 'default', type: GROUP, multiplicity: false, color: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Endpoints': {icon: 'default', type: GROUP, multiplicity: false, color: VPC_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Security Group': {icon: 'security', type: GROUP, multiplicity: false, color: SECURITY_COLOR,  layout: EXPANDED, container: NO_CONTAINER},
 
-			'Kubernetes Groups':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.GRAY, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Kubernetes Cluster':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'OpenShift Cluster':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Kubernetes Service':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.PURPLE,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Kubernetes Replica Set':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.PURPLE,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Kubernetes Pod':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.PURPLE,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Kubernetes Namespace':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.PURPLE,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
+			'Kubernetes Cluster': {icon: 'default', type: GROUP, multiplicity: false, color: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'OpenShift Cluster': {icon: 'default', type: GROUP, multiplicity: false, color: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Kubernetes Service': {icon: 'default', type: GROUP, multiplicity: false, color: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Kubernetes Replica Set': {icon: 'default', type: GROUP, multiplicity: false, color: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Kubernetes Pod': {icon: 'default', type: GROUP, multiplicity: false, color: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Kubernetes Namespace': {icon: 'default', type: GROUP, multiplicity: false, color: KUBE_GROUP_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
 
-			'Network Groups':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-				 shapeColor: MBS.COLOR_FAMILY.GRAY, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Public Network':
-				{iconName: 'events',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GREEN,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Enterprise Network':
-				{iconName: 'enterprise',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GREEN,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Cloud Foundry':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GREEN,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Data Center':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GREEN,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Point of Presence':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GREEN,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Overlay Network':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GREEN,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'VLAN':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.GROUP,
-			 	 shapeColor: MBS.COLOR_FAMILY.GREEN,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.EXPANDED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
+			'Public Network': {icon: 'events', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Enterprise Network': {icon: 'enterprise', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Cloud Foundry': {icon: 'default', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Data Center': {icon: 'default', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Point of Presence': {icon: 'default', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'Overlay Network': {icon: 'default', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
+			'VLAN': {icon: 'default', type: GROUP, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: EXPANDED, container: CONTAINER},
 		},
 
 		'Compute': {
-			'Virtual Server':
-				{iconName: 'virtual-machine',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Instance Group':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
+			'Virtual Server': {icon: 'virtual-machine', type: LOGICAL_NODE, multiplicity: false, color: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Instance Group': {icon: 'default', type: LOGICAL_NODE, multiplicity: false, color: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
 		},
 
 		'Compute Devices': {
-			'Physical Server':
-				{iconName: 'archive',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Mobile Device':
-				{iconName: 'mobile',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Tablet Device':
-				{iconName: 'tablet',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Laptop Device':
-				{iconName: 'laptop',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Desktop Computer':
-				{iconName: 'devices',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
+			'Physical Server': {icon: 'archive', type: LOGICAL_NODE, multiplicity: false, color: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Mobile Device': {icon: 'mobile', type: LOGICAL_NODE, multiplicity: false, color: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Tablet Device': {icon: 'tablet', type: LOGICAL_NODE, multiplicity: false, color: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Laptop Device': {icon: 'laptop', type: LOGICAL_NODE, multiplicity: false, color: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Desktop Computer': {icon: 'devices', type: LOGICAL_NODE, multiplicity: false, color: COMPUTE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
 		},
 
 		'Network': {
-			'Floating IP':
-				{iconName: 'connect',
-				 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Transit Gateway':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Endpoints':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
+			'Floating IP': {icon: 'connect', type: LOGICAL_NODE, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Transit Gateway': {icon: 'default', type: LOGICAL_NODE, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Endpoints': {icon: 'default', type: LOGICAL_NODE, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
 		},
 
 		'Network Devices': {
-			'Application Load Balancer':
-				{iconName: 'parent-child',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Network Load Balancer':
-				{iconName: 'parent-child',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Public Gateway':
-				{iconName: 'network--2',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Edge Node':
-				{iconName: 'edge-node',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
+			'Application Load Balancer': {icon: 'parent-child', type: LOGICAL_NODE, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Network Load Balancer': {icon: 'parent-child', type: LOGICAL_NODE, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Public Gateway': {icon: 'network--2', type: LOGICAL_NODE, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Edge Node': {icon: 'edge-node', type: LOGICAL_NODE, multiplicity: false, color: NETWORK_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
 		},
 
 		'Security': {
-			'VPN':
-				{iconName: 'VPN',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.RED, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'VPN Policy':
-				{iconName: 'policy',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.RED, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Identity and Access Manager':
-				{iconName: 'fingerprint-recognition',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.RED, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Credentials':
-				{iconName: 'credentials',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.RED, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Rule':
-				{iconName: 'rule',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.RED, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
+			'VPN': {icon: 'VPN', type: LOGICAL_NODE, multiplicity: false, color: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'VPN Policy': {icon: 'policy', type: LOGICAL_NODE, multiplicity: false, color: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Identity and Access Manager': {icon: 'fingerprint-recognition', type: LOGICAL_NODE, multiplicity: false, color: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Credentials': {icon: 'credentials', type: LOGICAL_NODE, multiplicity: false, color: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Rule': {icon: 'rule', type: LOGICAL_NODE, multiplicity: false, color: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
 		},
 
 		'Security Devices': {
-			'VPN Gateway':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.RED, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
+			'VPN Gateway': {icon: 'default', type: LOGICAL_NODE, multiplicity: false, color: SECURITY_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
 		},
 
 		'Storage': {
-			'Object Storage Accessor':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Object Storage Slicestor':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
+			'Object Storage Accessor': {icon: 'default', type: LOGICAL_NODE, multiplicity: false, color: STORAGE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Object Storage Slicestor': {icon: 'default', type: LOGICAL_NODE, multiplicity: false, color: STORAGE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
 		},
 
 		'Storage Devices': {
-			'Block Storage':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'File Storage':
-				{iconName: 'default',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Object Storage':
-				{iconName: 'object-storage',
-			 	 shapeType: MBS.SHAPE_TYPE.LOGICAL_NODE,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLUE, 
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
+			'Block Storage': {icon: 'default', type: LOGICAL_NODE, multiplicity: false, color: STORAGE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'File Storage': {icon: 'default', type: LOGICAL_NODE, multiplicity: false, color: STORAGE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Object Storage': {icon: 'object-storage', type: LOGICAL_NODE, multiplicity: false, color: STORAGE_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
 		},
 
 		'Users': {
-			'User':
-				{iconName: 'user',
-			 	 shapeType: MBS.SHAPE_TYPE.ACTOR,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLACK,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Users':
-				{iconName: 'group',
-			 	 shapeType: MBS.SHAPE_TYPE.ACTOR,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLACK,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Events':
-				{iconName: 'events',
-			 	 shapeType: MBS.SHAPE_TYPE.ACTOR,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLACK,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Collaborate':
-				{iconName: 'collaborate',
-			 	 shapeType: MBS.SHAPE_TYPE.ACTOR,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLACK,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
-			'Web Browser':
-				{iconName: 'terminal',
-			  	 shapeType: MBS.SHAPE_TYPE.ACTOR,
-			 	 shapeColor: MBS.COLOR_FAMILY.BLACK,
-			 	 shapeLayout: MBS.SHAPE_LAYOUT.COLLAPSED,
-			 	 shapeContainer: MBS.SHAPE_CONTAINER.YES_TRANSPARENT},
+			'User': {icon: 'user', type: ACTOR, multiplicity: false, color: USER_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Users': {icon: 'group', type: ACTOR, multiplicity: false, color: USER_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Events': {icon: 'events', type: ACTOR, multiplicity: false, color: USER_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Collaborate': {icon: 'collaborate', type: ACTOR, multiplicity: false, color: USER_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
+			'Web Browser': {icon: 'terminal', type: ACTOR, multiplicity: false, color: USER_COLOR, fillIcon: FILL_ICON_MEDIUM, fillText: FILL_TEXT_NONE, fillContainer: FILL_CONTAINER_NONE, layout: COLLAPSED, container: CONTAINER},
 		   },
 		};
 
-		for (let sectionName in stencils) {
-			const shapes = stencils[sectionName];
+		for (let section in stencils) {
+			const shapes = stencils[section];
 			var entries = [];
 
-			for (let shapeName in shapes) {
-				entries.push(this.addEntry(dt + shapeName.toLowerCase(), function() {
-					const shape = shapes[shapeName];
+			for (let name in shapes) {
+				entries.push(this.addEntry(dt + name.toLowerCase(), function() {
+					const shape = shapes[name];
 					var styleFont = '';
 					var extraStyle = '';
 					var shapeId = '';
 
-					var bg = Sidebar.prototype.addIBM2MondrianVertexTemplateFactory(shape.shapeType, shape.shapeLayout, shape.shapeColor, shape.shapeContainer, styleFont, extraStyle, shapeId, shapeName, shape.iconName);
-   					return sb.createVertexTemplateFromCells([bg], bg.geometry.width, bg.geometry.height, shapeName);
+					var bg = Sidebar.prototype.addIBM2MondrianVertexTemplateFactory(shape.type, shape.layout, shape.color, shape.container, styleFont, extraStyle, shapeId, name, shape.icon);
+   					return sb.createVertexTemplateFromCells([bg], bg.geometry.width, bg.geometry.height, name);
 				}))
 			}
-			this.setCurrentSearchEntryLibrary('ibm2', 'ibm2' + sectionName)
-			this.addPaletteFunctions('ibm2' + sectionName, 'IBM 2.0 / ' + sectionName, false, entries);
+			this.setCurrentSearchEntryLibrary('ibm2', 'ibm2' + section)
+			this.addPaletteFunctions('ibm2' + section, 'IBM 2.0 / ' + section, false, entries);
 		}
 
 		this.setCurrentSearchEntryLibrary();
