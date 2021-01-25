@@ -6,7 +6,7 @@
 		const MBS = Sidebar.prototype.IBM2MondrianBaseShape;
 
 		// Format dictionaries
-		const ACTOR_FORMAT = {type: MBS.SHAPE_TYPE.ACTOR, layout: MBS.SHAPE_LAYOUT.EXPANDED, multiplicity: false, textPosition: null, container: MBS.SHAPE_CONTAINER.YES_TRANSPARENT};
+		const ACTOR_FORMAT = {type: MBS.SHAPE_TYPE.ACTOR, layout: MBS.SHAPE_LAYOUT.COLLAPSED, multiplicity: false, textPosition: null, container: MBS.SHAPE_CONTAINER.YES_TRANSPARENT};
 		const GROUP_FORMAT = {type: MBS.SHAPE_TYPE.GROUP, layout: MBS.SHAPE_LAYOUT.EXPANDED, multiplicity: false, textPosition: null, container: MBS.SHAPE_CONTAINER.YES_TRANSPARENT};
 		const GROUP_FORMAT_NOCONTAINER = {type: MBS.SHAPE_TYPE.GROUP, layout: MBS.SHAPE_LAYOUT.EXPANDED, multiplicity: false, textPosition: null, container: MBS.SHAPE_CONTAINER.NO_TRANSPARENT};
 		const LOGICAL_FORMAT = {type: MBS.SHAPE_TYPE.LOGICAL_NODE, layout: MBS.SHAPE_LAYOUT.COLLAPSED, multiplicity: false, textPosition: null, container: MBS.SHAPE_CONTAINER.YES_TRANSPARENT};
