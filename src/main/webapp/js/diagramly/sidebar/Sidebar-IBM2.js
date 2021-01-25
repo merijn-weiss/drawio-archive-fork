@@ -5,7 +5,7 @@
 		const dt = 'ibm mondrian ';
 		const MBS = Sidebar.prototype.IBM2MondrianBaseShape;
 
-		// Pre-defined format dictionaries
+		// Format dictionaries
 		const ACTOR_FORMAT = {type: MBS.SHAPE_TYPE.ACTOR, layout: MBS.SHAPE_LAYOUT.EXPANDED, multiplicity: false, textPosition: null, container: MBS.SHAPE_CONTAINER.YES_TRANSPARENT};
 		const GROUP_FORMAT = {type: MBS.SHAPE_TYPE.GROUP, layout: MBS.SHAPE_LAYOUT.EXPANDED, multiplicity: false, textPosition: null, container: MBS.SHAPE_CONTAINER.YES_TRANSPARENT};
 		const GROUP_FORMAT_NOCONTAINER = {type: MBS.SHAPE_TYPE.GROUP, layout: MBS.SHAPE_LAYOUT.EXPANDED, multiplicity: false, textPosition: null, container: MBS.SHAPE_CONTAINER.NO_TRANSPARENT};
@@ -14,7 +14,7 @@
 		const PRESCRIBED_TYPE = {format: MBS.SHAPE_TYPE.PRESCRIBED_NODE, layout: MBS.SHAPE_LAYOUT.COLLAPSED, multiplicity: false, textPosition: null, container: MBS.SHAPE_CONTAINER.YES_TRANSPARENT};
 		const PRESCRIBED_TYPE_MULTIPLICITY = {format: MBS.SHAPE_TYPE.PRESCRIBED_NODE, layout: MBS.SHAPE_LAYOUT.COLLAPSED, multiplicity: true, textPosition: null, container: MBS.SHAPE_CONTAINER.YES_TRANSPARENT};
 
-		// Pre-defined color dictionaries
+		// Color dictionaries
 		const ACCOUNT_COLOR = {family: MBS.COLOR_FAMILY.GRAY, fillIcon: null, fillText: null, fillContainer: null};
 		const APPLICATIONS_COLOR = {family: MBS.COLOR_FAMILY.PURPLE, fillIcon: null, fillText: null, fillContainer: null};
 		const COMPUTE_COLOR = {family: MBS.COLOR_FAMILY.BLUE, fillIcon: null, fillText: null, fillContainer: null};
@@ -27,6 +27,7 @@
 		const USER_COLOR = {family: MBS.COLOR_FAMILY.BLACK, fillIcon: null, fillText: null, fillContainer: null};
 		const VPC_COLOR = {family: MBS.COLOR_FAMILY.GREEN, fillIcon: null, fillText: null, fillContainer: null};
 
+		// Stencil dictionaries
 		const stencils = {
 		   'Groups': { 
 			'IBM Cloud': {icon: 'ibm-cloud', format: GROUP_FORMAT, color: NETWORK_COLOR},
