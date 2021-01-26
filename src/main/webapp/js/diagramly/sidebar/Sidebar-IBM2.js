@@ -62,58 +62,58 @@
 			'Point of Presence': {icon: 'default', format: GROUP_FORMAT, color: NETWORK_COLOR},
 			'Overlay Network': {icon: 'default', format: GROUP_FORMAT, color: NETWORK_COLOR},
 			'VLAN': {icon: 'default', format: GROUP_FORMAT, color: NETWORK_COLOR},
-		},
+		   },
 
-		'Compute': {
+		   'Compute': {
 			'Virtual Server': {icon: 'virtual-machine', format: LOGICAL_FORMAT, color: COMPUTE_COLOR},
 			'Instance Group': {icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR},
-		},
+		   },
 
-		'Compute Devices': {
+		   'Compute Devices': {
 			'Physical Server': {icon: 'archive', format: LOGICAL_FORMAT, color: COMPUTE_COLOR},
 			'Mobile Device': {icon: 'mobile', format: LOGICAL_FORMAT, color: COMPUTE_COLOR},
 			'Tablet Device': {icon: 'tablet', format: LOGICAL_FORMAT, color: COMPUTE_COLOR},
 			'Laptop Device': {icon: 'laptop', format: LOGICAL_FORMAT, color: COMPUTE_COLOR},
 			'Desktop Computer': {icon: 'devices', format: LOGICAL_FORMAT, color: COMPUTE_COLOR},
-		},
+		   },
 
-		'Network': {
+		   'Network': {
 			'Floating IP': {icon: 'connect', format: LOGICAL_FORMAT, color: NETWORK_COLOR},
 			'Transit Gateway': {icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR},
 			'Endpoints': {icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR},
-		},
+		   },
 
-		'Network Devices': {
+		   'Network Devices': {
 			'Application Load Balancer': {icon: 'parent-child', format: LOGICAL_FORMAT, color: NETWORK_COLOR},
 			'Network Load Balancer': {icon: 'parent-child', format: LOGICAL_FORMAT, color: NETWORK_COLOR},
 			'Public Gateway': {icon: 'network--2', format: LOGICAL_FORMAT, color: NETWORK_COLOR},
 			'Edge Node': {icon: 'edge-node', format: LOGICAL_FORMAT, color: NETWORK_COLOR},
-		},
+		   },
 
-		'Security': {
+		   'Security': {
 			'VPN': {icon: 'VPN', format: LOGICAL_FORMAT, color: SECURITY_COLOR},
 			'VPN Policy': {icon: 'policy', format: LOGICAL_FORMAT, color: SECURITY_COLOR},
 			'Identity and Access Manager': {icon: 'fingerprint-recognition', format: LOGICAL_FORMAT, color: SECURITY_COLOR},
 			'Credentials': {icon: 'credentials', format: LOGICAL_FORMAT, color: SECURITY_COLOR},
 			'Rule': {icon: 'rule', format: LOGICAL_FORMAT, color: SECURITY_COLOR},
-		},
+		   },
 
-		'Security Devices': {
+		   'Security Devices': {
 			'VPN Gateway': {icon: 'default', format: LOGICAL_FORMAT, color: SECURITY_COLOR},
-		},
+		   },
 
-		'Storage': {
+		   'Storage': {
 			'Object Storage Accessor': {icon: 'default', format: LOGICAL_FORMAT, color: STORAGE_COLOR},
 			'Object Storage Slicestor': {icon: 'default', format: LOGICAL_FORMAT, color: STORAGE_COLOR},
-		},
+		   },
 
-		'Storage Devices': {
+		   'Storage Devices': {
 			'Block Storage': {icon: 'default', format: LOGICAL_FORMAT, color: STORAGE_COLOR},
 			'File Storage': {icon: 'default', format: LOGICAL_FORMAT, color: STORAGE_COLOR},
 			'Object Storage': {icon: 'object-storage', format: LOGICAL_FORMAT, color: STORAGE_COLOR},
-		},
+		   },
 
-		'Users': {
+		   'Users': {
 			'User': {icon: 'user', format: ACTOR_FORMAT, color: USER_COLOR},
 			'Users': {icon: 'group', format: ACTOR_FORMAT, color: USER_COLOR},
 			'Events': {icon: 'events', format: ACTOR_FORMAT, color: USER_COLOR},
