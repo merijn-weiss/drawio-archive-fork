@@ -18,13 +18,15 @@
 		// Color dictionaries
 		const ACCOUNT_COLOR = {family: MBS.COLOR_FAMILY.GRAY, fillIcon: null, fillText: null, fillContainer: null};
 		const APPLICATIONS_COLOR = {family: MBS.COLOR_FAMILY.PURPLE, fillIcon: null, fillText: null, fillContainer: null};
-		const COMPUTE_COLOR = {family: MBS.COLOR_FAMILY.BLUE, fillIcon: null, fillText: null, fillContainer: null};
-		const DATA_COLOR = {family: MBS.COLOR_FAMILY.BLUE, fillIcon: null, fillText: null, fillContainer: null};
+		const COMPUTE_COLOR = {family: MBS.COLOR_FAMILY.MAGENTA, fillIcon: null, fillText: null, fillContainer: null};
+		const DATA_COLOR = {family: MBS.COLOR_FAMILY.CYAN, fillIcon: null, fillText: null, fillContainer: null};
+		const DEVOPS_COLOR = {family: MBS.COLOR_FAMILY.GRAY, fillIcon: null, fillText: null, fillContainer: null};
 		const KUBE_COLOR = {family: MBS.COLOR_FAMILY.TEAL, fillIcon: null, fillText: null, fillContainer: null};
-		const MANAGEMENT_COLOR = {family: MBS.COLOR_FAMILY.BLUE, fillIcon: null, fillText: null, fillContainer: null};
+		const MANAGEMENT_COLOR = {family: MBS.COLOR_FAMILY.TEAL, fillIcon: null, fillText: null, fillContainer: null};
 		const NETWORK_COLOR = {family: MBS.COLOR_FAMILY.BLUE, fillIcon: null, fillText: null, fillContainer: null};
 		const SECURITY_COLOR = {family: MBS.COLOR_FAMILY.RED, fillIcon: null, fillText: null, fillContainer: null};
-		const STORAGE_COLOR = {family: MBS.COLOR_FAMILY.BLUE, fillIcon: null, fillText: null, fillContainer: null};
+		const SERVICES_COLOR = {family: MBS.COLOR_FAMILY.GREEN, fillIcon: null, fillText: null, fillContainer: null};
+		const STORAGE_COLOR = {family: MBS.COLOR_FAMILY.CYAN, fillIcon: null, fillText: null, fillContainer: null};
 		const USER_COLOR = {family: MBS.COLOR_FAMILY.BLACK, fillIcon: null, fillText: null, fillContainer: null};
 		const VPC_COLOR = {family: MBS.COLOR_FAMILY.GREEN, fillIcon: null, fillText: null, fillContainer: null};
 
@@ -41,13 +43,13 @@
 			'Access Group': {id: '', icon: 'credentials', format: GROUP_FORMAT, color: ACCOUNT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Resource Group': {id: '', icon: 'collaborate', format: GROUP_FORMAT, color: ACCOUNT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 
-			'VPC': {id: '', icon: 'virtual-private-cloud', format: GROUP_FORMAT, color: VPC_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'VPC Alt': {id: '', icon: 'virtual-private-cloud--alt', format: GROUP_FORMAT, color: VPC_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Subnet:ACL': {id: '', icon: 'default', format: GROUP_FORMAT, color: VPC_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Virtual Server': {id: '', icon: 'virtual-machine', format: GROUP_FORMAT, color: VPC_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Instance Group': {id: '', icon: 'default', format: GROUP_FORMAT, color: VPC_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Physical Server': {id: '', icon: 'default', format: GROUP_FORMAT, color: VPC_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Endpoints': {id: '', icon: 'default', format: GROUP_FORMAT, color: VPC_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'VPC': {id: '', icon: 'virtual-private-cloud', format: GROUP_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'VPC Alt': {id: '', icon: 'virtual-private-cloud--alt', format: GROUP_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Subnet:ACL': {id: '', icon: 'default', format: GROUP_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Virtual Server': {id: '', icon: 'virtual-machine', format: GROUP_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Instance Group': {id: '', icon: 'default', format: GROUP_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Physical Server': {id: '', icon: 'default', format: GROUP_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'VPC Endpoints': {id: '', icon: 'default', format: GROUP_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Security Group': {id: '', icon: 'security', format: GROUP_FORMAT_NOCONTAINER, color: SECURITY_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 
 			'Kubernetes Cluster': {id: '', icon: 'default', format: GROUP_FORMAT, color: KUBE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
@@ -67,21 +69,26 @@
 		   },
 
 		   'Applications': {
-			'Application': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Automation': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'CLI Application': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Client Web Application': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Microservice': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Mobile Application': {id: '', icon: 'mobile', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Serverless Application': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Application': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: APPLICATIONS_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Automation': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: APPLICATIONS_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'CLI Application': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: APPLICATIONS_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Client Web Application': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: APPLICATIONS_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Microservice': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: APPLICATIONS_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Mobile Application': {id: '', icon: 'mobile', format: LOGICAL_FORMAT, color: APPLICATIONS_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Serverless Application': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: APPLICATIONS_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 		   },
 
 		   'Compute': {
+			'VPC': {id: '', icon: 'virtual-private-cloud', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'VPC Alt': {id: '', icon: 'virtual-private-cloud--alt', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Subnet:ACL': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Virtual Server': {id: '', icon: 'virtual-machine', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Virtual Server Profile Bx': {id: '', icon: 'virtual-machine', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Virtual Server Profile Cx': {id: '', icon: 'virtual-machine', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Virtual Server Profile Mx': {id: '', icon: 'virtual-machine', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Instance Group (Autoscaling)': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'VPC Endpoints': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Cloud Services': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Classic Virtual Server': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 		   },
 
@@ -113,19 +120,19 @@
 		   },
 
 		   'DevOps': {
-			'Source Code Repository': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Artifacts Repository': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Continuous Integration Tool': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Continuous Deployment Tool': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Build Tool': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Test Tool': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Source Code Repository': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: DEVOPS_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Artifacts Repository': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: DEVOPS_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Continuous Integration Tool': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: DEVOPS_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Continuous Deployment Tool': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: DEVOPS_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Build Tool': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: DEVOPS_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Test Tool': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: DEVOPS_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 		   },
 
 		   'Management': {
-			'Alerting': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'IT Service Management': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Logging': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Monitoring': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Alerting': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: MANAGEMENT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'IT Service Management': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: MANAGEMENT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Logging': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: MANAGEMENT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Monitoring': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: MANAGEMENT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 		   },
 
 		   'Network': {
@@ -139,8 +146,6 @@
 			'Direct Link': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Hybrid Networking': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Transit Gateway': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'VPC Endpoints': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Cloud Services': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 		   },
 
 		   'Network Devices': {
@@ -159,6 +164,7 @@
 		   },
 
 		   'Security': {
+			'Security Group': {id: '', icon: 'security', format: LOGICAL_FORMAT, color: SECURITY_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Code Signing Service': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: SECURITY_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Two-Factor Authentication': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: SECURITY_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'ID Management': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: SECURITY_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
@@ -184,11 +190,12 @@
 		   },
 
 		   'Services Infrastructure': {
-			'Message Quuee': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: SECURITY_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'API Gateway': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: SECURITY_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Container Registry': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: SECURITY_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Virtual Image Repository': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: SECURITY_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Message Quuee': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: SERVICES_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'API Gateway': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: SERVICES_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Container Registry': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: SERVICES_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Virtual Image Repository': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: SERVICES_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 		   },
+
 		   'Storage': {
 			'Object Storage Accessor': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: STORAGE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Object Storage Slicestor': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: STORAGE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
@@ -215,7 +222,7 @@
 			for (let name in shapes) {
 				entries.push(this.addEntry(dt + name.toLowerCase(), function() {
 					const shape = shapes[name];
-					var bg = Sidebar.prototype.addIBM2MondrianVertexTemplateFactory(shape.format.type, shape.format.layout, shape.color.family, shape.format.container, shape.text.font, shape.extra, shape.id, name, shape.icon);
+					var bg = Sidebar.prototype.addIBM2MondrianVertexTemplateFactory(shape.format.type, shape.format.layout, shape.color.family, shape.format.container, shape.text.font, shape.extra+"version=v2", shape.id, name, shape.icon);
    					return sb.createVertexTemplateFromCells([bg], bg.geometry.width, bg.geometry.height, name);
 				}))
 			}
