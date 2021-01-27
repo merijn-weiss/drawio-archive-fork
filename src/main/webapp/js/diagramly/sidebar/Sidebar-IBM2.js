@@ -42,6 +42,7 @@
 			'Resource Group': {id: '', icon: 'collaborate', format: GROUP_FORMAT, color: ACCOUNT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 
 			'VPC': {id: '', icon: 'virtual-private-cloud', format: GROUP_FORMAT, color: VPC_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'VPC Alt': {id: '', icon: 'virtual-private-cloud--alt', format: GROUP_FORMAT, color: VPC_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Subnet:ACL': {id: '', icon: 'default', format: GROUP_FORMAT, color: VPC_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Virtual Server': {id: '', icon: 'virtual-machine', format: GROUP_FORMAT, color: VPC_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Instance Group': {id: '', icon: 'default', format: GROUP_FORMAT, color: VPC_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},

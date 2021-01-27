@@ -542,7 +542,59 @@
         <fillstroke/>
     </foreground>
 </shape>
-<shape aspect="variable" h="64" name="virtual-private-cloud" strokewidth="inherit" w="64">
+<shape aspect="variable" h="62.77" name="virtual-private-cloud" strokewidth="inherit" w="64">
+    <connections/>
+    <foreground>
+        <path>
+            <move x="39.847" y="39.231"/>
+            <line x="39.847" y="33.347"/>
+            <arc large-arc-flag="0" rx="7.846" ry="7.846" sweep-flag="0" x="24.154" x-axis-rotation="0" y="33.347"/>
+            <line x="24.154" y="39.231"/>
+            <arc large-arc-flag="0" rx="3.928" ry="3.928" sweep-flag="0" x="20.231" x-axis-rotation="0" y="43.154"/>
+            <line x="20.231" y="54.924"/>
+            <arc large-arc-flag="0" rx="3.928" ry="3.928" sweep-flag="0" x="24.154" x-axis-rotation="0" y="58.847"/>
+            <line x="39.847" y="58.847"/>
+            <arc large-arc-flag="0" rx="3.928" ry="3.928" sweep-flag="0" x="43.77" x-axis-rotation="0" y="54.924"/>
+            <line x="43.77" y="43.154"/>
+            <arc large-arc-flag="0" rx="3.928" ry="3.928" sweep-flag="0" x="39.847" x-axis-rotation="0" y="39.231"/>
+            <close/>
+            <move x="28.078" y="33.347"/>
+            <arc large-arc-flag="0" rx="3.923" ry="3.923" sweep-flag="1" x="35.924" x-axis-rotation="0" y="33.347"/>
+            <line x="35.924" y="39.231"/>
+            <line x="28.078" y="39.231"/>
+            <close/>
+            <move x="24.154" y="54.924"/>
+            <line x="24.154" y="43.154"/>
+            <line x="39.847" y="43.154"/>
+            <line x="39.849" y="54.924"/>
+            <close/>
+        </path>
+        <fillstroke/>
+        <path>
+            <move x="51.281" y="19.842"/>
+            <arc large-arc-flag="0" rx="19.629" ry="19.629" sweep-flag="0" x="35.708" x-axis-rotation="0" y="4.279"/>
+            <arc large-arc-flag="0" rx="19.621" ry="19.621" sweep-flag="0" x="12.719" x-axis-rotation="0" y="19.842"/>
+            <arc large-arc-flag="0" rx="14.716" ry="14.716" sweep-flag="0" x="15.31" x-axis-rotation="0" y="49.039"/>
+            <line x="16.308" y="49.039"/>
+            <line x="16.308" y="45.116"/>
+            <line x="15.318" y="45.116"/>
+            <arc large-arc-flag="0" rx="10.792" ry="10.792" sweep-flag="1" x="13.417" x-axis-rotation="0" y="23.703"/>
+            <line x="16.062" y="23.224"/>
+            <line x="16.571" y="20.584"/>
+            <arc large-arc-flag="0" rx="15.714" ry="15.714" sweep-flag="1" x="47.428" x-axis-rotation="0" y="20.584"/>
+            <line x="47.936" y="23.224"/>
+            <line x="50.582" y="23.703"/>
+            <arc large-arc-flag="0" rx="10.792" ry="10.792" sweep-flag="1" x="48.689" x-axis-rotation="0" y="45.116"/>
+            <line x="47.693" y="45.116"/>
+            <line x="47.693" y="49.039"/>
+            <line x="48.689" y="49.039"/>
+            <arc large-arc-flag="0" rx="14.716" ry="14.716" sweep-flag="0" x="51.281" x-axis-rotation="0" y="19.842"/>
+            <close/>
+        </path>
+        <fillstroke/>
+    </foreground>
+</shape>
+<shape aspect="variable" h="64" name="virtual-private-cloud--alt" strokewidth="inherit" w="64">
     <connections/>
     <foreground>
         <path>
