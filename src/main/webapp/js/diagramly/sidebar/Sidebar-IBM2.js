@@ -16,7 +16,6 @@
 		const PRESCRIBED_FORMAT = {format: MBS.SHAPE_TYPE.PRESCRIBED_NODE, layout: MBS.SHAPE_LAYOUT.COLLAPSED, container: MBS.SHAPE_CONTAINER.YES_TRANSPARENT};
 
 		// Color dictionaries
-		const ACCOUNT_COLOR = {family: MBS.COLOR_FAMILY.GRAY, fillIcon: null, fillText: null, fillContainer: null};
 		const APPLICATIONS_COLOR = {family: MBS.COLOR_FAMILY.PURPLE, fillIcon: null, fillText: null, fillContainer: null};
 		const COMPUTE_COLOR = {family: MBS.COLOR_FAMILY.MAGENTA, fillIcon: null, fillText: null, fillContainer: null};
 		const DATA_COLOR = {family: MBS.COLOR_FAMILY.CYAN, fillIcon: null, fillText: null, fillContainer: null};
@@ -32,14 +31,14 @@
 		const stencils = {
 		   'Groups': { 
 			'IBM Cloud': {id: '', icon: 'ibm-cloud', format: GROUP_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Region': {id: '', icon: 'flag', format: GROUP_FORMAT, color: ACCOUNT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Region Alt': {id: '', icon: 'location', format: GROUP_FORMAT, color: ACCOUNT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Zone': {id: '', icon: 'data--base--alt', format: GROUP_FORMAT, color: ACCOUNT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Region': {id: '', icon: 'flag', format: GROUP_FORMAT, color: DEVOPS_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Region Alt': {id: '', icon: 'location', format: GROUP_FORMAT, color: DEVOPS_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Zone': {id: '', icon: 'data--base--alt', format: GROUP_FORMAT, color: DEVOPS_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Cloud Services': {id: '', icon: 'default', format: GROUP_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Classic Infrastructure': {id: '', icon: 'default', format: GROUP_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Account': {id: '', icon: 'user', format: GROUP_FORMAT, color: ACCOUNT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Access Group': {id: '', icon: 'credentials', format: GROUP_FORMAT, color: ACCOUNT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Resource Group': {id: '', icon: 'collaborate', format: GROUP_FORMAT, color: ACCOUNT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Account': {id: '', icon: 'user', format: GROUP_FORMAT, color: MANAGEMENT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Access Group': {id: '', icon: 'credentials', format: GROUP_FORMAT, color: MANAGEMENT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Resource Group': {id: '', icon: 'collaborate', format: GROUP_FORMAT, color: MANAGEMENT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 
 			'VPC': {id: '', icon: 'virtual-private-cloud', format: GROUP_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'VPC Alt': {id: '', icon: 'virtual-private-cloud--alt', format: GROUP_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
