@@ -924,7 +924,6 @@
 <shape aspect="variable" h="32" name="connect" strokewidth="inherit" w="32">
     <connections/>
     <foreground>
-        <fillcolor color="#000000"/>
         <strokewidth width="1"/>
         <path>
             <move x="23" y="16.01"/>
