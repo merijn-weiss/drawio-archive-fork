@@ -222,7 +222,7 @@
 			for (let name in shapes) {
 				entries.push(this.addEntry(dt + name.toLowerCase(), function() {
 					const shape = shapes[name];
-					var bg = Sidebar.prototype.addIBM2MondrianVertexTemplateFactory(shape.format.type, shape.format.layout, shape.color.family, shape.format.container, shape.text.font, shape.extra+"version=v2", shape.id, name, shape.icon);
+					var bg = Sidebar.prototype.addIBM2MondrianVertexTemplateFactory(shape.format.type, shape.format.layout, shape.color.family, shape.format.container, shape.text.font, shape.extra+";version=v2", shape.id, name, shape.icon);
    					return sb.createVertexTemplateFromCells([bg], bg.geometry.width, bg.geometry.height, name);
 				}))
 			}
