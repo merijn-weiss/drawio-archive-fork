@@ -39,7 +39,7 @@
 
 	Sidebar.prototype.ibm2mondrian = ['Base Shapes'];
 
-	Sidebar.prototype.ibm2 = ['Groups', 'Compute', 'Compute Devices', 'Network', 'Network Devices', 'Security', 'Security Devices', 'Storage', 'Storage Devices', 'Users'];
+	Sidebar.prototype.ibm2 = ['Groups', 'Applications', 'Compute', 'Compute Devices', 'Data', 'DevOps', 'Management', 'Services Infrastructure', 'Network', 'Network Devices', 'Security', 'Security Devices', 'Storage', 'Storage Devices', 'Users'];
 
 	Sidebar.prototype.allied_telesis = ['Buildings', 'Computer and Terminals', 'Media Converters', 'Security', 'Storage', 'Switch', 'Wireless'];
 
