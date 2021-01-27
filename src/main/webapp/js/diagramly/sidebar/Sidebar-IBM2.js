@@ -21,14 +21,12 @@
 		const COMPUTE_COLOR = {family: MBS.COLOR_FAMILY.MAGENTA, fillIcon: null, fillText: null, fillContainer: null};
 		const DATA_COLOR = {family: MBS.COLOR_FAMILY.CYAN, fillIcon: null, fillText: null, fillContainer: null};
 		const DEVOPS_COLOR = {family: MBS.COLOR_FAMILY.GRAY, fillIcon: null, fillText: null, fillContainer: null};
-		const KUBE_COLOR = {family: MBS.COLOR_FAMILY.TEAL, fillIcon: null, fillText: null, fillContainer: null};
 		const MANAGEMENT_COLOR = {family: MBS.COLOR_FAMILY.TEAL, fillIcon: null, fillText: null, fillContainer: null};
 		const NETWORK_COLOR = {family: MBS.COLOR_FAMILY.BLUE, fillIcon: null, fillText: null, fillContainer: null};
 		const SECURITY_COLOR = {family: MBS.COLOR_FAMILY.RED, fillIcon: null, fillText: null, fillContainer: null};
 		const SERVICES_COLOR = {family: MBS.COLOR_FAMILY.GREEN, fillIcon: null, fillText: null, fillContainer: null};
 		const STORAGE_COLOR = {family: MBS.COLOR_FAMILY.CYAN, fillIcon: null, fillText: null, fillContainer: null};
 		const USER_COLOR = {family: MBS.COLOR_FAMILY.BLACK, fillIcon: null, fillText: null, fillContainer: null};
-		const VPC_COLOR = {family: MBS.COLOR_FAMILY.GREEN, fillIcon: null, fillText: null, fillContainer: null};
 
 		// Stencil dictionaries
 		const stencils = {
@@ -43,21 +41,21 @@
 			'Access Group': {id: '', icon: 'credentials', format: GROUP_FORMAT, color: ACCOUNT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Resource Group': {id: '', icon: 'collaborate', format: GROUP_FORMAT, color: ACCOUNT_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 
-			'VPC': {id: '', icon: 'virtual-private-cloud', format: GROUP_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'VPC Alt': {id: '', icon: 'virtual-private-cloud--alt', format: GROUP_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Subnet:ACL': {id: '', icon: 'default', format: GROUP_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'VPC': {id: '', icon: 'virtual-private-cloud', format: GROUP_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'VPC Alt': {id: '', icon: 'virtual-private-cloud--alt', format: GROUP_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Subnet:ACL': {id: '', icon: 'default', format: GROUP_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Virtual Server': {id: '', icon: 'virtual-machine', format: GROUP_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Instance Group': {id: '', icon: 'default', format: GROUP_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Physical Server': {id: '', icon: 'default', format: GROUP_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'VPC Endpoints': {id: '', icon: 'default', format: GROUP_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'VPC Endpoints': {id: '', icon: 'default', format: GROUP_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Security Group': {id: '', icon: 'security', format: GROUP_FORMAT_NOCONTAINER, color: SECURITY_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 
-			'Kubernetes Cluster': {id: '', icon: 'default', format: GROUP_FORMAT, color: KUBE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'OpenShift Cluster': {id: '', icon: 'default', format: GROUP_FORMAT, color: KUBE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Kubernetes Service': {id: '', icon: 'default', format: GROUP_FORMAT, color: KUBE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Kubernetes Replica Set': {id: '', icon: 'default', format: GROUP_FORMAT, color: KUBE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Kubernetes Pod': {id: '', icon: 'default', format: GROUP_FORMAT, color: KUBE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Kubernetes Namespace': {id: '', icon: 'default', format: GROUP_FORMAT, color: KUBE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Kubernetes Cluster': {id: '', icon: 'default', format: GROUP_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'OpenShift Cluster': {id: '', icon: 'default', format: GROUP_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Kubernetes Service': {id: '', icon: 'default', format: GROUP_FORMAT, color: SERVICES_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Kubernetes Replica Set': {id: '', icon: 'default', format: GROUP_FORMAT, color: SERVICES_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Kubernetes Pod': {id: '', icon: 'default', format: GROUP_FORMAT, color: SERVICES_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Kubernetes Namespace': {id: '', icon: 'default', format: GROUP_FORMAT, color: SERVICES_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 
 			'Public Network': {id: '', icon: 'events', format: GROUP_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Enterprise Network': {id: '', icon: 'enterprise', format: GROUP_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
@@ -79,16 +77,11 @@
 		   },
 
 		   'Compute': {
-			'VPC': {id: '', icon: 'virtual-private-cloud', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'VPC Alt': {id: '', icon: 'virtual-private-cloud--alt', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Subnet:ACL': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Virtual Server': {id: '', icon: 'virtual-machine', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Virtual Server Profile Bx': {id: '', icon: 'virtual-machine', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Virtual Server Profile Cx': {id: '', icon: 'virtual-machine', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Virtual Server Profile Mx': {id: '', icon: 'virtual-machine', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Instance Group (Autoscaling)': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'VPC Endpoints': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Cloud Services': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Classic Virtual Server': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 		   },
 
@@ -99,7 +92,7 @@
 			'Tablet Device': {id: '', icon: 'tablet', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Laptop Device': {id: '', icon: 'laptop', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Desktop Computer': {id: '', icon: 'devices', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Web Browser': {id: '', icon: 'terminal', format: ACTOR_FORMAT, color: USER_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Web Browser': {id: '', icon: 'terminal', format: ACTOR_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Classic Physical Server (Bare Metal)': {id: '', icon: 'archive', format: LOGICAL_FORMAT, color: COMPUTE_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 		   },
 
@@ -136,13 +129,18 @@
 		   },
 
 		   'Network': {
+			'VPC': {id: '', icon: 'virtual-private-cloud', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'VPC Alt': {id: '', icon: 'virtual-private-cloud--alt', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Subnet:ACL': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Floating IP': {id: '', icon: 'connect', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'VPC Endpoints': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Internet': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'CDN': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'DNS': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Subnet': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'VLAN': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
-			'Cloud Internet Services': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Cloud Services': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
+			'Internet Services': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Direct Link': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Hybrid Networking': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
 			'Transit Gateway': {id: '', icon: 'default', format: LOGICAL_FORMAT, color: NETWORK_COLOR, text: TEXT_DETAIL, extra: '', multiplicity: false},
