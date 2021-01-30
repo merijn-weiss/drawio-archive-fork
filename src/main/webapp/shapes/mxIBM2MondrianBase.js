@@ -199,8 +199,10 @@ mxIBM2MondrianBase.prototype.getColorSwatch = function(paletteVersion, colorFami
 
 
 // The ShapeVisualDefinition contains all properties that define color of various parts of the Shape
-mxIBM2MondrianBase.prototype.getShapeVisualDefinition = function (mondrianVersion, shapeType, shapeLayout,
-							colorFamily, colorFillIcon, colorFillText, colorFillContainer) {	
+mxIBM2MondrianBase.prototype.getShapeVisualDefinition = function (mondrianVersion, 
+							shapeType, shapeLayout, width, height,
+							colorFamily, colorFillIcon, colorFillText, colorFillContainer,
+							iconImage) {
 	// basic colors
 	const WHITE = '#ffffff';
 	const BLACK = '#000000';
@@ -208,34 +210,56 @@ mxIBM2MondrianBase.prototype.getShapeVisualDefinition = function (mondrianVersio
 
 	// VD properties
 	let shapeVD = {
+		shape: {type: shapeType, layout: shapeLayout, width: width, height: height},
 		outerLine: {color: null, colorSwatch: null},
 		bar: {color: null, visible: false, width: null},
-		corner: {color: null, colorSwatch: null},
-		icon: {color: null, colorSwatch: null},
+		corner: {color: null, colorSwatch: null, visible: false, width: 48, height: 48},
+		icon: {color: null, colorSwatch: null, visible: (iconImage != 'noIcon')},
 		titleBar: {color: null, colorSwatch: null},
+		text: {color: null},
 		dividerLine: {color: null, colorSwatch: null},
 		container: {color: null, colorSwatch: null},
-		decorator: {component: {color: WHITE, colorSwatch: null},}
+		decorator: {component: {color: WHITE, colorSwatch: null}},
 	};
 
-	// Shape Type Specific
-	if(shapeType === 'group') {
-		shapeVD.bar.visible = (shapeType === 'group' && colorFillIcon != 'noColor'); // color fill is a workaround to enable hiding the bar
-		shapeVD.bar.width = (shapeVD.bar.visible) ? 6 : 0;
-	}
-
-	// Get the Swatches for each Shape part
 	//outerline
 	shapeVD.outerLine.colorSwatch = this.getColorSwatch(paletteVersion, colorFamily, colorFillIcon, 'outerLine', shapeLayout, shapeType);
 
-	//bar
-	shapeVD.bar.colorSwatch = shapeVD.outerLine.colorSwatch;
-
-	//corner
-	shapeVD.corner.colorSwatch = this.getColorSwatch(paletteVersion, colorFamily, colorFillIcon, 'corner', shapeLayout, shapeType);
-
 	//titleBar
-	shapeVD.titleBar.colorSwatch = this.getColorSwatch(paletteVersion, colorFamily, colorFillText, 'titleBar', shapeLayout, shapeType);
+	if(shapeType === 'ts')
+		shapeVD.titleBar.colorSwatch = this.getColorSwatch(paletteVersion, colorFamily, colorFillIcon, 'corner', shapeLayout, shapeType);
+	else
+		shapeVD.titleBar.colorSwatch = this.getColorSwatch(paletteVersion, colorFamily, colorFillText, 'titleBar', shapeLayout, shapeType);
+
+	//bar & corner
+	shapeVD.bar.colorSwatch = shapeVD.outerLine.colorSwatch;
+	shapeVD.corner.colorSwatch = this.getColorSwatch(paletteVersion, colorFamily, colorFillIcon, 'corner', shapeLayout, shapeType);
+	if(shapeType === 'group') {
+		shapeVD.bar.visible = !(colorFillIcon === 'noColor'); // color fill is a workaround to enable hiding the bar
+		shapeVD.bar.width = (shapeVD.bar.visible) ? 6 : 0;
+		
+		shapeVD.corner.visible = shapeVD.icon.visible;
+		shapeVD.corner.width = (shapeVD.corner.visible) ? this.iconSpacing + this.iconSize + shapeVD.bar.width : shapeVD.bar.width;
+	}
+	else
+	{
+		if(shapeType === 'ts')
+			shapeVD.corner.visible = shapeVD.icon.visible;
+		else
+			shapeVD.corner.visible = (shapeVD.corner.colorSwatch === 'noColor' && !shapeVD.icon.visible) ? false : true;
+		
+		if(shapeVD.corner.visible)
+		{
+			if(shapeType === 'ts')
+				shapeVD.corner.width = (shapeLayout === 'collapsed') ? (2 * this.targetSystemRadius + this.iconSize) : (this.iconSpacing + this.iconSize - 4);
+			else
+				shapeVD.corner.width = (shapeVD.corner.colorSwatch === 'noColor' || shapeVD.corner.colorSwatch === shapeVD.titleBar.colorSwatch) ? this.iconSpacing + this.iconSize : shapeVD.corner.width;
+		}
+		else
+		{
+			shapeVD.corner.width = 0;
+		}
+	}
 
 	//dividerLine		
 	shapeVD.dividerLine.colorSwatch = (shapeVD.titleBar.colorSwatch === 'swatch_10') ? 'swatch_30' : 'swatch_20';
@@ -252,6 +276,12 @@ mxIBM2MondrianBase.prototype.getShapeVisualDefinition = function (mondrianVersio
 	shapeVD.container.color = this.getSelectedColorSpecification(colorFamily)[shapeVD.container.colorSwatch];
 
 	shapeVD.icon.color = (this.isDarkColor(paletteVersion, shapeVD.corner.color, shapeVD.corner.colorSwatch)) ?  WHITE : BLACK;
+
+	if(shapeLayout === 'collapsed')
+		shapeVD.text.color = BLACK;
+	else
+		shapeVD.text.color = (this.isDarkColor(paletteVersion, shapeVD.titleBar.color, shapeVD.titleBar.colorSwatch)) ?  WHITE : BLACK;
+
 	shapeVD.decorator.component.color = WHITE;
 
 	return shapeVD;
@@ -350,13 +380,6 @@ mxIBM2MondrianBase.prototype.titleBarHeight = 48;
  * Default width and height for the titleBarHeight. Default is 48.
  */
 mxIBM2MondrianBase.prototype.shapeWidthIconView = 48;
-
-/**
- * Variable: shapeHeightIconView
- *
- * Default width and height for the titleBarHeight. Default is 48.
- */
-mxIBM2MondrianBase.prototype.shapeHeightIconView = 48;
 
 /**
  * Variable: titleBarWidthMinimum
@@ -619,16 +642,27 @@ mxIBM2MondrianBase.prototype.paintVertexShape = function(c, x, y, w, h)
 {
 	this.shapeVisualDefinition = mxIBM2MondrianBase.prototype.getShapeVisualDefinition(
 		this.version,
-		this.shapeType, this.shapeLayout,
-		this.colorFamily, this.colorFillIcon, this.colorFillText, this.colorFillContainer);
+		this.shapeType, this.shapeLayout, w, h,
+		this.colorFamily, this.colorFillIcon, this.colorFillText, this.colorFillContainer,
+		this.iconImage);
 
 	c.translate(x, y);
-	
+
 	this.paintContainer(c, x, y, w, h);
 	this.paintTitleBar(c, x, y, w, h);
-	this.paintIconBox(c, x, y, w, h);
+	this.paintCorner(c);
 	this.paintIcon(c, x, y, w, h);
 	this.paintShape(c, x, y, w, h);
+
+	// if the fontColor is Black or White the color is controlled by visualization rules
+	fontColor = this.style.fontColor;
+	if(fontColor != this.shapeVisualDefinition.text.color && (fontColor === '#000000' || fontColor === '#FFFFFF' || fontColor === '#ffffff' || fontColor === 'undefined'))
+	{
+		this.style.fontColor = this.shapeVisualDefinition.text.color;
+		styleCurrent = this.state.view.graph.model.getStyle(this.state.cell);
+		newStyle = mxUtils.setStyle(styleCurrent, 'fontColor', this.style.fontColor);
+		this.state.view.graph.model.setStyle(this.state.cell, newStyle);
+	}
 };
 
 /**
@@ -672,7 +706,7 @@ mxIBM2MondrianBase.prototype.paintContainer = function(c, x, y, w, h)
  */
 mxIBM2MondrianBase.prototype.paintTitleBar = function(c, x, y, w, h)
 {
-	if(this.shapeLayout === 'expanded' && this.shapeVisualDefinition.titleBar.color != 'none')
+	if((this.shapeLayout === 'expanded' || this.shapeType === 'ts') && this.shapeVisualDefinition.titleBar.color != 'none')
 	{
 		const minHeight = Math.min(h, this.titleBarHeight);
 		if(this.shapeType === 'ln' || this.shapeType === 'lc')
@@ -724,66 +758,54 @@ mxIBM2MondrianBase.prototype.paintTitleBar = function(c, x, y, w, h)
 };
 
 /**
- * Function: paintIconBox
+ * Function: paitCorner
  * 
  * Generic background painting implementation.
  */
-mxIBM2MondrianBase.prototype.paintIconBox = function(c, x, y, w, h)
+mxIBM2MondrianBase.prototype.paintCorner = function(c)
 {
-	const minWidth = Math.min(w, this.getIconBoxWidth());
-	const minHeight = Math.min(h, this.titleBarHeight);
+	let cornerWidth = this.shapeVisualDefinition.corner.width;
+	let cornerHeight = this.shapeVisualDefinition.corner.height;
 
-	if(minWidth > 0)
+	if(this.shapeVisualDefinition.corner.visible)
 	{
 		c.setFillColor(this.shapeVisualDefinition.corner.color);
 
 		if(this.shapeType === 'actor')
 		{
-			c.ellipse(0, 0, minWidth, minHeight);
+			c.ellipse(0, 0, cornerWidth, cornerHeight);
 		}
 		else if(this.shapeType === 'ts')
 		{
-			if(w <= 64)
-			{
-				c.begin();
-				c.moveTo(this.targetSystemRadius, 0);
-				c.lineTo(minWidth - this.targetSystemRadius, 0);
-				c.arcTo(this.targetSystemRadius, this.targetSystemRadius, 0, 0, 1, minWidth - this.targetSystemRadius, minHeight);
-				c.lineTo(this.targetSystemRadius, minHeight);
-				c.arcTo(this.targetSystemRadius, this.targetSystemRadius, 0, 0, 1, this.targetSystemRadius, 0);
-				c.close();
-			}
-			else
-			{
-				c.begin();
-				c.moveTo(this.targetSystemRadius, 0);
-				c.lineTo(minWidth, 0);
-				c.lineTo(minWidth, minHeight);
-				c.lineTo(this.targetSystemRadius, minHeight);
-				c.arcTo(this.targetSystemRadius, this.targetSystemRadius, 0, 0, 1, this.targetSystemRadius, 0);
-				c.close();
-			}
+			cornerWidth = this.shapeVisualDefinition.shape.width;
+			c.begin();
+			c.moveTo(this.targetSystemRadius, 0);
+			c.lineTo(cornerWidth - this.targetSystemRadius, 0);
+			c.arcTo(this.targetSystemRadius, this.targetSystemRadius, 0, 0, 1, cornerWidth - this.targetSystemRadius, cornerHeight);
+			c.lineTo(this.targetSystemRadius, cornerHeight);
+			c.arcTo(this.targetSystemRadius, this.targetSystemRadius, 0, 0, 1, this.targetSystemRadius, 0);
+			c.close();
 		}
 		else if(this.shapeType === 'ln' || this.shapeType === 'lc') // Logical Node or Logical Component
 		{
-			if(w <= this.shapeWidthIconView)
+			if(this.shapeVisualDefinition.shape.width <= this.shapeWidthIconView)
 			{
-				c.roundrect(0, 0, minWidth, minHeight, this.cornerRadius, this.cornerRadius);
+				c.roundrect(0, 0, cornerWidth, cornerHeight, this.cornerRadius, this.cornerRadius);
 			}
 			else
 			{
 				c.begin();
 				c.moveTo(this.cornerRadius, 0);
-				c.lineTo(minWidth, 0);
-				c.lineTo(minWidth, minHeight);
-				if (h > this.titleBarHeight)
+				c.lineTo(cornerWidth, 0);
+				c.lineTo(cornerWidth, cornerHeight);
+				if (this.shapeVisualDefinition.shape.height > this.titleBarHeight)
 				{
-					c.lineTo(0, minHeight);
+					c.lineTo(0, cornerHeight);
 				}
 				else
 				{
-					c.lineTo(this.cornerRadius, minHeight);
-					c.arcTo(this.cornerRadius, this.cornerRadius, 0, 0, 1, 0, minHeight - this.cornerRadius);
+					c.lineTo(this.cornerRadius, cornerHeight);
+					c.arcTo(this.cornerRadius, this.cornerRadius, 0, 0, 1, 0, cornerHeight - this.cornerRadius);
 				}
 				c.lineTo(0, this.cornerRadius);	
 				c.arcTo(this.cornerRadius, this.cornerRadius, 0, 0, 1, this.cornerRadius, 0);
@@ -792,7 +814,7 @@ mxIBM2MondrianBase.prototype.paintIconBox = function(c, x, y, w, h)
 		}
 		else if(this.shapeType === 'pn' || this.shapeType === 'pc' || this.shapeType === 'group')
 		{
-			c.rect(0, 0, minWidth, minHeight);
+			c.rect(0, 0, cornerWidth, cornerHeight);
 		}
 		
 		c.fill();
@@ -806,17 +828,11 @@ mxIBM2MondrianBase.prototype.paintIconBox = function(c, x, y, w, h)
  */
 mxIBM2MondrianBase.prototype.paintShape = function(c, x, y, w, h)
 {
-	var shapeWidth = w;
-	var shapeHeigth = h;
+	var shapeWidth = this.shapeVisualDefinition.shape.width;
+	var shapeHeigth = this.shapeVisualDefinition.shape.height;
 	var componentDecoratorOffset = -4;
 	var componentDecoratorHeight = 4;
 	var componentDecoratorWidth = 8;
-
-	if(this.shapeLayout == 'collapsed' || this.shapeType === 'actor')
-	{
-		shapeWidth = this.getIconBoxWidth();
-		shapeHeigth = this.getIconBoxWidth();
-	}
 	
 	if(this.shapeType === 'actor')
 	{
@@ -990,30 +1006,6 @@ mxIBM2MondrianBase.prototype.paintIcon = function(c, x, y, w, h)
 	}
 };
 
-mxIBM2MondrianBase.prototype.getIconBoxWidth = function()
-{
-	if(this.iconImage === 'noIcon')
-	{
-		return this.shapeVisualDefinition.bar.width;
-	}
-	else
-	{
-		switch(this.shapeType)
-		{
-			case 'ts':
-				if(this.shapeLayout === 'collapsed')
-					return (2 * this.targetSystemRadius + this.iconSize);
-				else
-					return (2 * this.iconSpacing + this.iconSize - 4);
-			case 'group':
-				return (this.iconSpacing + this.iconSize + this.shapeVisualDefinition.bar.width);
-			default:
-				return (2 * this.iconSpacing + this.iconSize);
-		}
-	}
-};
-
-
 /**
  * Function: getStyle
  * 
@@ -1021,7 +1013,7 @@ mxIBM2MondrianBase.prototype.getIconBoxWidth = function()
  */
 var shapeStyle = {};
 mxIBM2MondrianBase.prototype.getStyle = function(style, shapeType, shapeLayout, positionText, iconImage)
-{
+{	
 	if(shapeType === 'group')
 	{
 		style = mxUtils.setStyle(style, 'container', 1);
@@ -1045,13 +1037,19 @@ mxIBM2MondrianBase.prototype.getStyle = function(style, shapeType, shapeLayout, 
 			shapeStyle.labelPosition = mxConstants.ALIGN_CENTER;
 			shapeStyle.verticalAlign = mxConstants.ALIGN_MIDDLE;
 			if(shapeType === 'ts' && iconImage === 'noIcon') // Target Shape without Icon has text centered
+			{
 				shapeStyle.align = mxConstants.ALIGN_CENTER;
+				shapeStyle.spacingLeft = this.textSpacingLeft;
+				shapeStyle.spacingRight = shapeStyle.spacingLeft;
+			}
 			else
+			{
 				shapeStyle.align = mxConstants.ALIGN_LEFT;
-
+				shapeStyle.spacingLeft = this.textSpacingLeft;
+				shapeStyle.spacingRight = this.textSpacingRight;	
+			}
+				
 			shapeStyle.spacing = 0;
-			shapeStyle.spacingLeft = this.textSpacingLeft;
-			shapeStyle.spacingRight = this.textSpacingRight;
 			shapeStyle.spacingTop = 0;//this.textSpacingTop;
 			shapeStyle.spacingBottom = 0;
 			style = mxUtils.setStyle(style, mxConstants.STYLE_LABEL_WIDTH, null); // remove the label width since this is controlled by the bounding box
@@ -1208,9 +1206,10 @@ mxIBM2MondrianBase.prototype.getRectangle = function(rect, shapeType, shapeLayou
  */
 mxIBM2MondrianBase.prototype.getLabelBounds = function(rect)
 {
-	return new mxRectangle(rect.x + this.getIconBoxWidth() * this.scale, 
+	return new mxRectangle(
+					rect.x + this.shapeVisualDefinition.corner.width * this.scale, 
 					rect.y,
-					rect.width -  (this.getIconBoxWidth() * this.scale),
+					rect.width -  (this.shapeVisualDefinition.corner.width * this.scale),
 					this.titleBarHeight * this.scale);
 };
 
