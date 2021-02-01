@@ -58,6 +58,14 @@ mxIBM2MondrianBase.prototype.cst = {
 
 	POSITION_TEXT : 'positionText', 
 	POSITION_TEXT_DEFAULT : 'bottom',
+
+	MODIFIER : 'modifier',
+	MODIFIER_DEFAULT : 'noModifier',
+	MODIFIER_COLOR_FAMILY : 'modifierColorFamily',
+	MODIFIER_COLOR_FAMILY_DEFAULT : 'black',
+	MODIFIER_COLOR_FILL : 'modifierColorFill', 
+	MODIFIER_COLOR_FILL_DEFAULT : 'medium', 
+
 };
 
 //**********************************************************************************************************************************************************
@@ -127,7 +135,7 @@ mxIBM2MondrianBase.prototype.getColorSwatch = function(paletteVersion, colorFami
 	{
 		if(paletteVersion === 'v2')
 		{
-			if(shapePart === 'outerLine')// TODO: after v1/v2 decision made this must be fixed. Now you the color is determined by the Icon (Fill)
+			if(shapePart === 'outerLine' || shapePart === 'modifierLine')// TODO: after v1/v2 decision made this must be fixed. Now you the color is determined by the Icon (Fill)
 			{
 				switch(colorIntensity) 
 				{
@@ -169,7 +177,7 @@ mxIBM2MondrianBase.prototype.getColorSwatch = function(paletteVersion, colorFami
 		}
 		else // paletteVersion === 'v1a' || paletteVersion === 'v1b'
 		{
-			if (shapePart === 'outerLine' && paletteVersion === 'v1b')
+			if ((shapePart === 'outerLine' && paletteVersion === 'v1b') || shapePart === 'modifierLine')
 				return 'swatch_60'
 			else if (shapePart === 'outerLine' && shapeLayout === 'expanded')
 				return 'swatch_60'
@@ -199,7 +207,9 @@ mxIBM2MondrianBase.prototype.getColorSwatch = function(paletteVersion, colorFami
 
 
 // The ShapeVisualDefinition contains all properties that define color of various parts of the Shape
-mxIBM2MondrianBase.prototype.getShapeVisualDefinition = function (mondrianVersion, 
+mxIBM2MondrianBase.prototype.getShapeVisualDefinition = function (
+							thisShape,
+							mondrianVersion, 
 							shapeType, shapeLayout, width, height,
 							colorFamily, colorFillIcon, colorFillText, colorFillContainer,
 							iconImage) {
@@ -210,7 +220,7 @@ mxIBM2MondrianBase.prototype.getShapeVisualDefinition = function (mondrianVersio
 
 	// VD properties
 	let shapeVD = {
-		shape: {type: shapeType, layout: shapeLayout, width: width, height: height},
+		shape: {type: shapeType, layout: shapeLayout, width: width, height: height, container: false},
 		outerLine: {color: null, colorSwatch: null},
 		bar: {color: null, visible: false, width: null},
 		corner: {color: null, colorSwatch: null, visible: false, width: 48, height: 48},
@@ -220,7 +230,12 @@ mxIBM2MondrianBase.prototype.getShapeVisualDefinition = function (mondrianVersio
 		dividerLine: {color: null, colorSwatch: null},
 		container: {color: null, colorSwatch: null},
 		decorator: {component: {color: WHITE, colorSwatch: null}},
+		modifier: {shape: 'circle', visible: false, fill: {color: null, colorSwatch: null}, line: {color: null, colorSwatch: null}, text: null, textColor: null},
 	};
+
+	//shape 
+	if(shapeVD.shape.layout != 'collapsed')
+		shapeVD.shape.container = (shapeVD.shape.height - this.titleBarHeight > 2); //
 
 	//outerline
 	shapeVD.outerLine.colorSwatch = this.getColorSwatch(paletteVersion, colorFamily, colorFillIcon, 'outerLine', shapeLayout, shapeType);
@@ -284,6 +299,24 @@ mxIBM2MondrianBase.prototype.getShapeVisualDefinition = function (mondrianVersio
 
 	shapeVD.decorator.component.color = WHITE;
 
+	//  modifier
+	shapeVD.modifier.shape = mxUtils.getValue(thisShape.style, mxIBM2MondrianBase.prototype.cst.MODIFIER, mxIBM2MondrianBase.prototype.cst.MODIFIER_DEFAULT);
+	shapeVD.modifier.visible = (shapeVD.modifier.shape != 'noModifier');
+	if(shapeVD.modifier.visible)
+	{
+		let modifierColorFamily = mxUtils.getValue(thisShape.style, mxIBM2MondrianBase.prototype.cst.MODIFIER_COLOR_FAMILY, mxIBM2MondrianBase.prototype.cst.MODIFIER_COLOR_FAMILY_DEFAULT);
+		let modifierColorFill = mxUtils.getValue(thisShape.style, mxIBM2MondrianBase.prototype.cst.MODIFIER_COLOR_FILL, mxIBM2MondrianBase.prototype.cst.MODIFIER_COLOR_FILL_DEFAULT);
+		
+		shapeVD.modifier.fill.colorSwatch = this.getColorSwatch(paletteVersion, modifierColorFamily, modifierColorFill, 'modifier', shapeLayout, shapeType);
+		shapeVD.modifier.fill.color = this.getSelectedColorSpecification(modifierColorFamily)[shapeVD.modifier.fill.colorSwatch];
+
+		shapeVD.modifier.line.colorSwatch = this.getColorSwatch(paletteVersion, modifierColorFamily, modifierColorFill, 'modifierLine', shapeLayout, shapeType);
+		shapeVD.modifier.line.color = this.getSelectedColorSpecification(modifierColorFamily)[shapeVD.modifier.line.colorSwatch];
+
+		shapeVD.modifier.text = thisShape.state.cell.getAttribute('Modifier-Text',null);
+		shapeVD.modifier.textColor = (this.isDarkColor(paletteVersion, shapeVD.modifier.fill.color, shapeVD.modifier.fill.colorSwatch)) ?  WHITE : BLACK;
+	}
+
 	return shapeVD;
 };
 
@@ -307,6 +340,14 @@ mxIBM2MondrianBase.prototype.customProperties = [
 		enumList:[{val:'noColor', dispName: 'None'}, {val:'white', dispName: 'White'}, {val:'veryLight', dispName: 'Very Light'}]},
 	{name:'positionText', dispName:'Position (Text)', type:'enum', defVal:'bottom',
 		enumList:[{val:'bottom', dispName: 'Bottom'}, {val:'top', dispName: 'Top'}, {val:'left', dispName: 'Left'}, {val:'right', dispName: 'Right'}]},
+
+	// Modifier
+	{name:'modifier', dispName:'Modifier', type:'enum', defVal:'noModifier',
+		enumList:[{val:'noModifier', dispName: 'None'}, {val:'circle', dispName: 'Circle'}, {val:'square', dispName: 'Square'}, {val:'triangle', dispName: 'Triangle'}, {val:'hexagon', dispName: 'Hexagon'}]},
+	{name:'modifierColorFamily', dispName:'Modifier (Color)', type:'enum', defVal:'black',
+		enumList:[{val:'blue', dispName: 'Blue'}, {val:'black', dispName: 'Black'}, {val:'cyan', dispName: 'Cyan'}, {val:'green', dispName: 'Green'}, {val:'gray', dispName: 'Gray'}, {val:'magenta', dispName: 'Magenta'}, {val:'purple', dispName: 'Purple'}, {val:'red', dispName: 'Red'}, {val:'teal', dispName: 'Teal'}]},
+	{name:'modifierColorFill', dispName:'Modifier (Fill)', type:'enum', defVal:'medium',
+		enumList:[{val:'white', dispName: 'White'}, {val:'light', dispName: 'Light'}, {val:'medium', dispName: 'Medium'}, {val:'dark', dispName: 'Dark'}]},
 	];
 
 mxCellRenderer.registerShape(mxIBM2MondrianBase.prototype.cst.MONDRIAN_BASE, mxIBM2MondrianBase);
@@ -400,6 +441,14 @@ mxIBM2MondrianBase.prototype.init = function(container)
 		for (var key in Editor.config[mxIBM2MondrianBase.prototype.cst.MONDRIAN_BASE]['icon_stencil_libraries']) {
 			mxStencilRegistry.loadStencilSet(
 				Editor.config[mxIBM2MondrianBase.prototype.cst.MONDRIAN_BASE]['icon_stencil_libraries'][key]);
+		}
+	}
+
+	let mondrianAttributes = ['Element-ID', 'Element-Name','Icon-Name','Modifier-Text'];
+	for (var attributeIndex in mondrianAttributes) {
+		if(!this.state.cell.hasAttribute(mondrianAttributes[attributeIndex]))
+		{
+			this.state.cell.setAttribute(mondrianAttributes[attributeIndex],'')
 		}
 	}
 
@@ -500,7 +549,13 @@ mxIBM2MondrianBase.prototype.installListeners = function()
 					const currentIconName = (currentIconAttribute != null) ? currentIconAttribute.value : null;
 					const previousIconName = (previousIconAttribute != null) ?  previousIconAttribute.value : null;
 					
-					if(currentIconName != previousIconName)
+					const currentCMTextAttribute = evt.properties.change.value.attributes.getNamedItem('Modifier-Text');
+					const previousCMTextAttribute = evt.properties.change.previous.attributes.getNamedItem('Modifier-Text');
+	
+					const currentCMText = (currentCMTextAttribute != null) ? currentCMTextAttribute.value : null;
+					const previousCMText = (previousCMTextAttribute != null) ?  previousCMTextAttribute.value : null;
+
+					if(currentIconName != previousIconName || currentCMText != previousCMText)
 						this.redraw();
 				}
 				else if(evt.properties.change.constructor.name === 'mxStyleChange' && (evt.properties.change.cell.id === this.cellID))
@@ -641,6 +696,7 @@ mxIBM2MondrianBase.prototype.cellMustRestyle = function(currentStyle, newStyle)
 mxIBM2MondrianBase.prototype.paintVertexShape = function(c, x, y, w, h)
 {
 	this.shapeVisualDefinition = mxIBM2MondrianBase.prototype.getShapeVisualDefinition(
+		this,
 		this.version,
 		this.shapeType, this.shapeLayout, w, h,
 		this.colorFamily, this.colorFillIcon, this.colorFillText, this.colorFillContainer,
@@ -648,11 +704,12 @@ mxIBM2MondrianBase.prototype.paintVertexShape = function(c, x, y, w, h)
 
 	c.translate(x, y);
 
-	this.paintContainer(c, x, y, w, h);
-	this.paintTitleBar(c, x, y, w, h);
+	this.paintContainer(c);
+	this.paintTitleBar(c);
 	this.paintCorner(c);
-	this.paintIcon(c, x, y, w, h);
-	this.paintShape(c, x, y, w, h);
+	this.paintIcon(c);
+	this.paintShape(c);
+	this.paintModifier(c);
 
 	// if the fontColor is Black or White the color is controlled by visualization rules
 	fontColor = this.style.fontColor;
@@ -670,10 +727,12 @@ mxIBM2MondrianBase.prototype.paintVertexShape = function(c, x, y, w, h)
  * 
  * Generic background painting implementation.
  */
-mxIBM2MondrianBase.prototype.paintContainer = function(c, x, y, w, h)
+mxIBM2MondrianBase.prototype.paintContainer = function(c)
 {
-	const endContainer = h - this.titleBarHeight;
+	const endContainer = this.shapeVisualDefinition.shape.height - this.titleBarHeight;
 	const startContainer = this.titleBarHeight;
+	const containerWidth = this.shapeVisualDefinition.shape.width;
+	const containerHeight = this.shapeVisualDefinition.shape.height;
 
 	if(this.shapeLayout != 'collapsed' && endContainer > 0)
 	{
@@ -682,18 +741,18 @@ mxIBM2MondrianBase.prototype.paintContainer = function(c, x, y, w, h)
 			c.setFillColor(this.shapeVisualDefinition.container.color);
 			c.begin();
 			c.moveTo(0, startContainer);
-			c.lineTo(w, startContainer);
-			c.lineTo(w, h - this.cornerRadius);
-			c.arcTo(this.cornerRadius, this.cornerRadius, 0, 0, 1, w - this.cornerRadius, h);
-			c.lineTo(this.cornerRadius, h);
-			c.arcTo(this.cornerRadius, this.cornerRadius, 0, 0, 1, 0, h - this.cornerRadius);
+			c.lineTo(containerWidth, startContainer);
+			c.lineTo(containerWidth, containerHeight - this.cornerRadius);
+			c.arcTo(this.cornerRadius, this.cornerRadius, 0, 0, 1, containerWidth - this.cornerRadius, containerHeight);
+			c.lineTo(this.cornerRadius, containerHeight);
+			c.arcTo(this.cornerRadius, this.cornerRadius, 0, 0, 1, 0, containerHeight - this.cornerRadius);
 			c.lineTo(0, startContainer);
 			c.close();
 			c.fill();
 		}
 		else {
 			c.setFillColor(this.shapeVisualDefinition.container.color);
-			c.rect(0, startContainer, w, endContainer);
+			c.rect(0, startContainer, containerWidth, endContainer);
 			c.fill();
 		}	
 	}
@@ -704,23 +763,24 @@ mxIBM2MondrianBase.prototype.paintContainer = function(c, x, y, w, h)
  * 
  * Generic background painting implementation.
  */
-mxIBM2MondrianBase.prototype.paintTitleBar = function(c, x, y, w, h)
+mxIBM2MondrianBase.prototype.paintTitleBar = function(c)
 {
+	let titleBarWidth = this.shapeVisualDefinition.shape.width;
+	let titleBarHeight = this.titleBarHeight;
+
 	if((this.shapeLayout === 'expanded' || this.shapeType === 'ts') && this.shapeVisualDefinition.titleBar.color != 'none')
 	{
-		const minHeight = Math.min(h, this.titleBarHeight);
 		if(this.shapeType === 'ln' || this.shapeType === 'lc')
 		{
-			
-			if (h > this.titleBarHeight)
+			if (this.shapeVisualDefinition.shape.height > titleBarHeight)
 			{
 				c.setFillColor(this.shapeVisualDefinition.titleBar.color);
 				c.begin();
 				c.moveTo(this.cornerRadius, 0);
-				c.lineTo(w - this.cornerRadius, 0);
-				c.arcTo(this.cornerRadius, this.cornerRadius, 0, 0, 1, w, this.cornerRadius);
-				c.lineTo(w, minHeight);
-				c.lineTo(0, minHeight);
+				c.lineTo(titleBarWidth - this.cornerRadius, 0);
+				c.arcTo(this.cornerRadius, this.cornerRadius, 0, 0, 1, titleBarWidth, this.cornerRadius);
+				c.lineTo(titleBarWidth, titleBarHeight);
+				c.lineTo(0, titleBarHeight);
 				c.lineTo(0, this.cornerRadius);
 				c.arcTo(this.cornerRadius, this.cornerRadius, 0, 0, 1, this.cornerRadius, 0);
 				c.close();
@@ -729,14 +789,14 @@ mxIBM2MondrianBase.prototype.paintTitleBar = function(c, x, y, w, h)
 			else
 			{
 				c.setFillColor(this.shapeVisualDefinition.titleBar.color);
-				c.roundrect(0, 0, w, minHeight, this.cornerRadius, this.cornerRadius);
+				c.roundrect(0, 0, titleBarWidth, titleBarHeight, this.cornerRadius, this.cornerRadius);
 				c.fill();
 			}
 		}
 		else if(this.shapeType === 'pn' || this.shapeType === 'pc' || this.shapeType === 'group')
 		{
 			c.setFillColor(this.shapeVisualDefinition.titleBar.color);
-			c.rect(0, 0, w, minHeight);
+			c.rect(0, 0, titleBarWidth, titleBarHeight);
 			c.fill();
 		}
 		else if(this.shapeType === 'ts')
@@ -744,9 +804,9 @@ mxIBM2MondrianBase.prototype.paintTitleBar = function(c, x, y, w, h)
 			c.setFillColor(this.shapeVisualDefinition.titleBar.color);
 			c.begin();
 			c.moveTo(this.targetSystemRadius, 0);
-			c.lineTo(w - this.targetSystemRadius, 0);
-			c.arcTo(this.targetSystemRadius, this.targetSystemRadius, 0, 0, 1, w - this.targetSystemRadius, minHeight);
-			c.lineTo(this.targetSystemRadius, minHeight);
+			c.lineTo(titleBarWidth - this.targetSystemRadius, 0);
+			c.arcTo(this.targetSystemRadius, this.targetSystemRadius, 0, 0, 1, titleBarWidth - this.targetSystemRadius, titleBarHeight);
+			c.lineTo(this.targetSystemRadius, titleBarHeight);
 			c.arcTo(this.targetSystemRadius, this.targetSystemRadius, 0, 0, 1, this.targetSystemRadius, 0);
 			c.close();
 			c.fill();
@@ -798,7 +858,7 @@ mxIBM2MondrianBase.prototype.paintCorner = function(c)
 				c.moveTo(this.cornerRadius, 0);
 				c.lineTo(cornerWidth, 0);
 				c.lineTo(cornerWidth, cornerHeight);
-				if (this.shapeVisualDefinition.shape.height > this.titleBarHeight)
+				if (this.shapeVisualDefinition.shape.container)
 				{
 					c.lineTo(0, cornerHeight);
 				}
@@ -826,13 +886,13 @@ mxIBM2MondrianBase.prototype.paintCorner = function(c)
  * 
  * Generic background painting implementation.
  */
-mxIBM2MondrianBase.prototype.paintShape = function(c, x, y, w, h)
+mxIBM2MondrianBase.prototype.paintShape = function(c)
 {
-	var shapeWidth = this.shapeVisualDefinition.shape.width;
-	var shapeHeigth = this.shapeVisualDefinition.shape.height;
-	var componentDecoratorOffset = -4;
-	var componentDecoratorHeight = 4;
-	var componentDecoratorWidth = 8;
+	let shapeWidth = this.shapeVisualDefinition.shape.width;
+	let shapeHeigth = this.shapeVisualDefinition.shape.height;
+	let componentDecoratorOffset = -4;
+	let componentDecoratorHeight = 4;
+	let componentDecoratorWidth = 8;
 	
 	if(this.shapeType === 'actor')
 	{
@@ -854,7 +914,7 @@ mxIBM2MondrianBase.prototype.paintShape = function(c, x, y, w, h)
 	}
 	else if(this.shapeType === 'ln' || this.shapeType === 'lc') // Logical Node or Logical Component
 	{
-		if (h > this.titleBarHeight)
+		if (this.shapeVisualDefinition.shape.container)
 		{
 			c.setStrokeColor(this.shapeVisualDefinition.dividerLine.color);
 			c.begin();
@@ -879,7 +939,7 @@ mxIBM2MondrianBase.prototype.paintShape = function(c, x, y, w, h)
 	}
 	else if(this.shapeType === 'pn' || this.shapeType === 'pc') // Prescribed Node or Prescribed Component
 	{
-		if (h > this.titleBarHeight)
+		if (this.shapeVisualDefinition.shape.container)
 		{
 			c.setStrokeColor(this.shapeVisualDefinition.dividerLine.color);
 			c.begin();
@@ -914,10 +974,78 @@ mxIBM2MondrianBase.prototype.paintShape = function(c, x, y, w, h)
 		{
 			c.setFillColor(this.shapeVisualDefinition.outerLine.color);
 			c.rect(0, 0, this.shapeVisualDefinition.bar.width, this.titleBarHeight);
-			c.fill();	
+			c.fill();
 		}
 	}
 };
+
+mxIBM2MondrianBase.prototype.paintModifier = function(c)
+{
+	if(this.shapeVisualDefinition.modifier.visible)
+	{
+		let fontSize = 12;
+		let characterWidth = (6/10) * fontSize;
+		let modifierSingleDimension = 14;
+
+		let modifierText = this.shapeVisualDefinition.modifier.text;
+		let textLength = (modifierText != null) ? modifierText.length : 0;
+		let extraTextWidth = (textLength > 1) ? characterWidth * (textLength - 1) + 4 : 0;
+
+		let modifierHeight = modifierSingleDimension;
+		let modifierWidth = modifierSingleDimension + extraTextWidth;
+		let topModifierY = -1 * modifierHeight/2;
+		let bottomModifierY = modifierHeight/2;
+		
+		let rightModifierX = (this.shapeVisualDefinition.shape.layout === 'collapsed') ? (this.shapeVisualDefinition.shape.width/2 + modifierWidth/2) : this.shapeVisualDefinition.shape.width - 16;
+		let leftModifierX = rightModifierX - modifierWidth;
+		let centerModifierX = (rightModifierX + leftModifierX)/2;
+
+		c.setFillColor(this.shapeVisualDefinition.modifier.fill.color);
+		c.setStrokeColor(this.shapeVisualDefinition.modifier.line.color);
+
+		if(this.shapeVisualDefinition.modifier.shape === 'circle')
+		{
+			let circleRadius = 7;
+			c.begin();
+			c.moveTo(leftModifierX + circleRadius, topModifierY);
+			c.lineTo(rightModifierX - circleRadius, topModifierY);
+			c.arcTo(circleRadius/2, circleRadius/2, 0, 0, 1, rightModifierX - circleRadius, bottomModifierY);
+			c.lineTo(leftModifierX + circleRadius, bottomModifierY);
+			c.arcTo(circleRadius/2, circleRadius/2, 0, 0, 1, leftModifierX + circleRadius, topModifierY);
+			c.close();
+		}
+		else if(this.shapeVisualDefinition.modifier.shape === 'square')
+		{
+			c.begin();
+			c.moveTo(leftModifierX, topModifierY);
+			c.lineTo(rightModifierX, topModifierY);
+			c.lineTo(rightModifierX, bottomModifierY);
+			c.lineTo(leftModifierX, bottomModifierY);
+			c.lineTo(leftModifierX, topModifierY);
+			c.close();
+		}
+		else if(this.shapeVisualDefinition.modifier.shape === 'triangle')
+		{
+			c.begin();
+			c.moveTo(leftModifierX + modifierSingleDimension/2, topModifierY);
+			c.lineTo(rightModifierX - modifierSingleDimension/2, topModifierY);
+			c.lineTo(rightModifierX, bottomModifierY);
+			c.lineTo(leftModifierX, bottomModifierY);
+			c.lineTo(leftModifierX + modifierSingleDimension/2, topModifierY);
+			c.close();
+		}
+
+		c.fillAndStroke();
+
+		if(modifierText != null)
+		{
+			c.setFontColor(this.shapeVisualDefinition.modifier.textColor);
+			c.setFontSize(fontSize);
+			c.setFontFamily('IBM Plex Mono');
+			c.text(centerModifierX, -1, 0, 14, modifierText, mxConstants.ALIGN_CENTER, mxConstants.ALIGN_MIDDLE, 0, null, 0, 0, 0);	
+		}
+	}
+}
 
 mxIBM2MondrianBase.prototype.paintShapeMultiplicity = function(c, shapeWidth, shapeHeigth, shapeOuterShape)
 {
@@ -961,7 +1089,7 @@ mxIBM2MondrianBase.prototype.paintShapeMultiplicity = function(c, shapeWidth, sh
  * 
  * Generic background painting implementation.
  */
-mxIBM2MondrianBase.prototype.paintIcon = function(c, x, y, w, h)
+mxIBM2MondrianBase.prototype.paintIcon = function(c)
 {
 	var positionX = this.iconSpacing;
 	var positionY = this.iconSpacing;
@@ -971,7 +1099,7 @@ mxIBM2MondrianBase.prototype.paintIcon = function(c, x, y, w, h)
 		if(this.shapeLayout === 'collapsed')
 			positionX = this.targetSystemRadius;
 		else
-			positionX = h - (this.targetSystemRadius * 2);
+			positionX = this.shapeVisualDefinition.shape.height - (this.targetSystemRadius * 2);
 	}
 	else if(this.shapeType === 'group')
 	{
@@ -980,7 +1108,7 @@ mxIBM2MondrianBase.prototype.paintIcon = function(c, x, y, w, h)
 
 	if(this.iconImage === 'stencilIcon')
 	{
-		var iconStencilName = this.state.cell.getAttribute('Icon-Name',null);
+		let iconStencilName = this.state.cell.getAttribute('Icon-Name',null);
 		if(iconStencilName != null && iconStencilName != '')
 		{
 			var bgSt1 = mxStencilRegistry.getStencil('mxgraph.ibm2mondrian.' + iconStencilName);
