@@ -415,12 +415,6 @@ mxIBM2MondrianBase.prototype.iconSpacing = 12;
  */
 mxIBM2MondrianBase.prototype.titleBarHeight = 48;
 
-/**
- * Variable: shapeWidthIconView
- *
- * Default width and height for the titleBarHeight. Default is 48.
- */
-mxIBM2MondrianBase.prototype.shapeWidthIconView = 48;
 
 /**
  * Variable: titleBarWidthMinimum
@@ -848,7 +842,7 @@ mxIBM2MondrianBase.prototype.paintCorner = function(c)
 		}
 		else if(this.shapeType === 'ln' || this.shapeType === 'lc') // Logical Node or Logical Component
 		{
-			if(this.shapeVisualDefinition.shape.width <= this.shapeWidthIconView)
+			if(this.shapeVisualDefinition.shape.layout === 'collapsed')
 			{
 				c.roundrect(0, 0, cornerWidth, cornerHeight, this.cornerRadius, this.cornerRadius);
 			}
