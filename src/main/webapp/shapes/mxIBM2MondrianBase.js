@@ -34,7 +34,7 @@ mxUtils.extend(mxIBM2MondrianBase, mxShape);
 mxIBM2MondrianBase.prototype.cst = {
 	MONDRIAN_BASE : 'mxgraph.ibm2mondrian.base',
 	MONDRIAN_VERSION: 'version',
-	MONDRIAN_VERSION_DEFAULT: 'v1a',
+	MONDRIAN_VERSION_DEFAULT: 'v2',
 
 	SHAPE_TYPE : 'shapeType',
 	SHAPE_TYPE_DEFAULT : 'pn',
@@ -321,24 +321,24 @@ mxIBM2MondrianBase.prototype.getShapeVisualDefinition = function (
 };
 
 mxIBM2MondrianBase.prototype.customProperties = [
-	{name:'version', dispName: '[TMP: Visual Standard]', type:'enum', defVal:'v1a',
-		enumList:[{val:'v1a', dispName: 'v1a - 3-color intensities, no outerline for collapsed'}, {val:'v1b', dispName: 'v1b - 3-color intensities, outerline for collapsed'}, {val:'v2', dispName: 'v2 - 2-color intensities'}]},
-	{name:'shapeType', dispName:'Type', type:'enum', defVal:'pn',
+	//{name:'version', dispName: '[TMP: Visual Standard]', type:'enum', defVal:'v2',
+	//	enumList:[{val:'v1a', dispName: 'v1a - 3-color intensities, no outerline for collapsed'}, {val:'v1b', dispName: 'v1b - 3-color intensities, outerline for collapsed'}, {val:'v2', dispName: 'v2 - 2-color intensities'}]},
+	{name:'shapeType', dispName:'Shape', type:'enum', defVal:'pn',
 		enumList:[{val:'actor', dispName: 'Actor'}, {val:'ts', dispName: 'Target System'}, {val:'ln', dispName: 'Logical Node'}, {val:'lc', dispName: 'Logical Component'}, {val:'pn', dispName: 'Prescribed Node'}, {val:'pc', dispName: 'Prescribed Component'}, {val:'group', dispName: 'Group'}]},
-	{name:'shapeLayout', dispName:'Layout', type:'enum', defVal:'expanded',
+	{name:'shapeLayout', dispName:'Shape (Layout)', type:'enum', defVal:'expanded',
 		enumList:[{val:'collapsed', dispName: 'Collapsed'},{val:'expanded', dispName: 'Expanded'},{val:'custom', dispName: 'Custom'}]},
 	{name: 'shapeMultiplicity', dispName: 'Multiplicity', type: 'bool', defVal: false},
-	{name:'iconImage', dispName:'Icon (Image)', type:'enum', defVal:'stencilIcon',
-		enumList:[{val:'noIcon', dispName: '[no icon]'}, {val:'stencilIcon', dispName: '[stencil icon]'}, {val:'imageIcon', dispName: '[image icon]'}]},
 	{name:'colorFamily', dispName:'Color', type:'enum', defVal:'blue',
 		enumList:[{val:'blue', dispName: 'Blue'}, {val:'black', dispName: 'Black'}, {val:'cyan', dispName: 'Cyan'}, {val:'green', dispName: 'Green'}, {val:'gray', dispName: 'Gray'}, {val:'magenta', dispName: 'Magenta'}, {val:'purple', dispName: 'Purple'}, {val:'red', dispName: 'Red'}, {val:'teal', dispName: 'Teal'}]},
-	{name:'colorFillIcon', dispName:'Fill (Icon)', type:'enum', defVal:'medium',
+	{name:'colorFillIcon', dispName:'Color (Corner)', type:'enum', defVal:'medium',
 		enumList:[{val:'noColor', dispName: 'None'}, {val:'light', dispName: 'Light'}, {val:'medium', dispName: 'Medium'}, {val:'dark', dispName: 'Dark'}]},
-	{name:'colorFillText', dispName:'Fill (Text)', type:'enum', defVal:'white',
+	{name:'colorFillText', dispName:'Color (Title bar)', type:'enum', defVal:'white',
 		enumList:[{val:'noColor', dispName: 'None'}, {val:'white', dispName: 'White'}, {val:'veryLight', dispName: 'Very Light'}]},
-	{name:'colorFillContainer', dispName:'Fill (Container)', type:'enum', defVal:'white',
+	{name:'colorFillContainer', dispName:'Color (Container)', type:'enum', defVal:'white',
 		enumList:[{val:'noColor', dispName: 'None'}, {val:'white', dispName: 'White'}, {val:'veryLight', dispName: 'Very Light'}]},
-	{name:'positionText', dispName:'Position (Text)', type:'enum', defVal:'bottom',
+	{name:'iconImage', dispName:'Icon', type:'enum', defVal:'stencilIcon',
+		enumList:[{val:'noIcon', dispName: '[no icon]'}, {val:'stencilIcon', dispName: '[stencil icon]'}, {val:'imageIcon', dispName: '[image icon]'}]},
+	{name:'positionText', dispName:'Label (Position)', type:'enum', defVal:'bottom',
 		enumList:[{val:'bottom', dispName: 'Bottom'}, {val:'top', dispName: 'Top'}, {val:'left', dispName: 'Left'}, {val:'right', dispName: 'Right'}]},
 
 	// Modifier
@@ -664,7 +664,7 @@ mxIBM2MondrianBase.prototype.getStyleValue = function(style, key)
  */
 mxIBM2MondrianBase.prototype.redraw = function()
 {
-	this.version = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.MONDRIAN_VERSION, mxIBM2MondrianBase.prototype.cst.MONDRIAN_VERSION_DEFAULT);	
+	this.version = 'v2';//mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.MONDRIAN_VERSION, mxIBM2MondrianBase.prototype.cst.MONDRIAN_VERSION_DEFAULT);	
 	this.shapeType = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.SHAPE_TYPE, mxIBM2MondrianBase.prototype.cst.SHAPE_TYPE_DEFAULT);	
 	this.shapeLayout = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.SHAPE_LAYOUT, mxIBM2MondrianBase.prototype.cst.SHAPE_LAYOUT_DEFAULT);
 	this.shapeMultiplicity = mxUtils.getValue(this.style, mxIBM2MondrianBase.prototype.cst.SHAPE_MULTIPLICITY, mxIBM2MondrianBase.prototype.cst.SHAPE_MULTIPLICITY_DEFAULT);
