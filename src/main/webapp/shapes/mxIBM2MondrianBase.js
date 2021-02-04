@@ -343,7 +343,9 @@ mxIBM2MondrianBase.prototype.customProperties = [
 
 	// Modifier
 	{name:'modifier', dispName:'Modifier', type:'enum', defVal:'noModifier',
-		enumList:[{val:'noModifier', dispName: 'None'}, {val:'circle', dispName: 'Circle'}, {val:'square', dispName: 'Square'}, {val:'triangle', dispName: 'Triangle'}, {val:'hexagon', dispName: 'Hexagon'}]},
+		enumList:[
+		{val:'noModifier', dispName: 'None'}, {val:'circle', dispName: 'Circle'}, {val:'diamond', dispName: 'Diamond'}, 
+		{val:'square', dispName: 'Square'}, {val:'triangle', dispName: 'Triangle'}, {val:'hexagon', dispName: 'Hexagon'}, {val:'octagon', dispName: 'Octagon'}]},
 	{name:'modifierColorFamily', dispName:'Modifier (Color)', type:'enum', defVal:'black',
 		enumList:[{val:'blue', dispName: 'Blue'}, {val:'black', dispName: 'Black'}, {val:'cyan', dispName: 'Cyan'}, {val:'green', dispName: 'Green'}, {val:'gray', dispName: 'Gray'}, {val:'magenta', dispName: 'Magenta'}, {val:'purple', dispName: 'Purple'}, {val:'red', dispName: 'Red'}, {val:'teal', dispName: 'Teal'}]},
 	{name:'modifierColorFill', dispName:'Modifier (Fill)', type:'enum', defVal:'medium',
@@ -979,14 +981,23 @@ mxIBM2MondrianBase.prototype.paintModifier = function(c)
 	{
 		let fontSize = 12;
 		let characterWidth = (6/10) * fontSize;
-		let modifierSingleDimension = 14;
+		let modifierOuterBoxSingle = {
+			circle: {width: 14, height:14},
+			diamond: {width: 14, height:14},
+			square: {width: 12, height:12},
+			triangle: {width: 14, height:13.5},
+			hexagon: {width: 15, height:13},
+			octagon: {width: 13, height:13},
+		};
+		let outerBoxSingleWidth = modifierOuterBoxSingle[this.shapeVisualDefinition.modifier.shape].width;
+		let outerBoxSingleHeight = modifierOuterBoxSingle[this.shapeVisualDefinition.modifier.shape].height;
 
 		let modifierText = this.shapeVisualDefinition.modifier.text;
 		let textLength = (modifierText != null) ? modifierText.length : 0;
 		let extraTextWidth = (textLength > 1) ? characterWidth * (textLength - 1) + 4 : 0;
 
-		let modifierHeight = modifierSingleDimension;
-		let modifierWidth = modifierSingleDimension + extraTextWidth;
+		let modifierHeight = outerBoxSingleHeight;
+		let modifierWidth = outerBoxSingleWidth + extraTextWidth;
 		let topModifierY = -1 * modifierHeight/2;
 		let bottomModifierY = modifierHeight/2;
 		
@@ -1008,6 +1019,17 @@ mxIBM2MondrianBase.prototype.paintModifier = function(c)
 			c.arcTo(circleRadius/2, circleRadius/2, 0, 0, 1, leftModifierX + circleRadius, topModifierY);
 			c.close();
 		}
+		else if(this.shapeVisualDefinition.modifier.shape === 'diamond')
+		{
+			c.begin();
+			c.moveTo(leftModifierX + outerBoxSingleWidth/2, topModifierY);
+			c.lineTo(rightModifierX - outerBoxSingleWidth/2, topModifierY);
+			c.lineTo(rightModifierX, 0);
+			c.lineTo(rightModifierX - outerBoxSingleWidth/2, bottomModifierY);
+			c.lineTo(leftModifierX + outerBoxSingleWidth/2, bottomModifierY);
+			c.lineTo(leftModifierX, 0);
+			c.close();
+		}
 		else if(this.shapeVisualDefinition.modifier.shape === 'square')
 		{
 			c.begin();
@@ -1021,11 +1043,37 @@ mxIBM2MondrianBase.prototype.paintModifier = function(c)
 		else if(this.shapeVisualDefinition.modifier.shape === 'triangle')
 		{
 			c.begin();
-			c.moveTo(leftModifierX + modifierSingleDimension/2, topModifierY);
-			c.lineTo(rightModifierX - modifierSingleDimension/2, topModifierY);
+			c.moveTo(leftModifierX + outerBoxSingleWidth/2, topModifierY);
+			c.lineTo(rightModifierX - outerBoxSingleWidth/2, topModifierY);
 			c.lineTo(rightModifierX, bottomModifierY);
 			c.lineTo(leftModifierX, bottomModifierY);
-			c.lineTo(leftModifierX + modifierSingleDimension/2, topModifierY);
+			c.lineTo(leftModifierX + outerBoxSingleWidth/2, topModifierY);
+			c.close();
+		}
+		else if(this.shapeVisualDefinition.modifier.shape === 'hexagon')
+		{
+			c.begin();
+			c.moveTo(leftModifierX + outerBoxSingleWidth/4, topModifierY);
+			c.lineTo(rightModifierX - outerBoxSingleWidth/4, topModifierY);
+			c.lineTo(rightModifierX, 0);
+			c.lineTo(rightModifierX - outerBoxSingleWidth/4, bottomModifierY);
+			c.lineTo(leftModifierX + outerBoxSingleWidth/4, bottomModifierY);
+			c.lineTo(leftModifierX, 0);
+			c.lineTo(leftModifierX + outerBoxSingleWidth/4, topModifierY);		
+			c.close();
+		}
+		else if(this.shapeVisualDefinition.modifier.shape === 'octagon')
+		{
+			c.begin();
+			c.moveTo(leftModifierX + outerBoxSingleWidth/4, topModifierY);
+			c.lineTo(rightModifierX - outerBoxSingleWidth/4, topModifierY);
+			c.lineTo(rightModifierX, topModifierY + outerBoxSingleHeight/4);
+			c.lineTo(rightModifierX, bottomModifierY - outerBoxSingleHeight/4);
+			c.lineTo(rightModifierX - outerBoxSingleWidth/4, bottomModifierY);
+			c.lineTo(leftModifierX + outerBoxSingleWidth/4, bottomModifierY);
+			c.lineTo(leftModifierX, bottomModifierY - outerBoxSingleHeight/4);
+			c.lineTo(leftModifierX, topModifierY + outerBoxSingleHeight/4);
+			c.lineTo(leftModifierX + outerBoxSingleWidth/4, topModifierY);			
 			c.close();
 		}
 
